@@ -3,35 +3,13 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "static/images"
+media_folder: "images"
 public_folder: "/images"
 
 collections:
   - name: "news"
     label: "Жаңалықтар"
     folder: "content/news"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Тақырып", name: "title", widget: "string"}
-      - {label: "Дата", name: "date", widget: "datetime"}
-      - {label: "Сурет", name: "image", widget: "image"}
-      - {label: "Мәтін", name: "body", widget: "markdown"}
-  
-  - name: "culture"
-    label: "Мәдениет"
-    folder: "content/culture"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Тақырып", name: "title", widget: "string"}
-      - {label: "Дата", name: "date", widget: "datetime"}
-      - {label: "Сурет", name: "image", widget: "image"}
-      - {label: "Мәтін", name: "body", widget: "markdown"}
-
-  - name: "sport"
-    label: "Спорт"
-    folder: "content/sport"
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
