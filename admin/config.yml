@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/images"
+public_folder: "/images"
+
+locale: 'kaa'
+
+collections:
+  - name: "news"
+    label: "Жаңалықлар"
+    folder: "content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Тақырып", name: "title", widget: "string"}
+      - {label: "Күни", name: "date", widget: "datetime"}
+      - {label: "Автор", name: "author", widget: "string"}
+      - {label: "Қысқаша", name: "summary", widget: "text"}
+      - {label: "Мазмуны", name: "body", widget: "markdown"}
+      - {label: "Сүўрет", name: "image", widget: "image", required: false}
+      - {label: "Теглер", name: "tags", widget: "list", required: false}
