@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="kaa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қарақалпақстанның Суверенитети - KarakalpakVoice</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #ffd700;
+        }
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: #ffd700;
+            color: #1e3c72;
+            transform: translateY(-2px);
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .content {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .article {
+            padding: 3rem;
+        }
+        .article h2 {
+            color: #1e3c72;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 3px solid #ffd700;
+            padding-bottom: 0.5rem;
+        }
+        .article h3 {
+            color: #2a5298;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+        }
+        .article h4 {
+            color: #1e3c72;
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+        .historical-event {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border-left: 5px solid #ffd700;
+        }
+        .declaration-text {
+            background: #1e3c72;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        .declaration-text ol {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+        .declaration-text ul {
+            margin-left: 2rem;
+            margin-top: 1rem;
+        }
+        .warning-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 2px solid #ff5252;
+        }
+        .warning-box h4 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .video-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .video-link {
+            display: inline-block;
+            background: #ff0000;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.3s;
+        }
+        .video-link:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+        .contact-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        .contact-section h3 {
+            color: #ffd700;
+            margin-bottom: 2rem;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-item i {
+            color: #ffd700;
+        }
+        .slogan {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            color: #ffd700;
+        }
+        .language-content {
+            display: none;
+        }
+        .language-content.active {
+            display: block;
+        }
+        .image-placeholder {
+            background: #e9ecef;
+            border: 2px dashed #6c757d;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 10px;
+            color: #6c757d;
+            font-style: italic;
+        }
+        .mobile-menu {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .article {
+                padding: 1.5rem;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .language-switcher {
+                margin-top: 1rem;
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-voice"></i> KarakalpakVoice
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Бас бет</a></li>
+                <li><a href="news.html">Жаңалықлар</a></li>
+                <li><a href="sovereignty.html" style="color: #ffd700; font-weight: bold;">Суверенитет</a></li>
+                <li><a href="sport.html">Спорт</a></li>
+            </ul>
+            <div class="language-switcher">
+                <a href="#" class="lang-btn active" onclick="switchLanguage('kaa')">🇬🇦 QAR</a>
+                <a href="#" class="lang-btn" onclick="switchLanguage('ru')">🇷🇺 РУС</a>
+                <a href="#" class="lang-btn" onclick="switchLanguage('en')">🇬🇧 ENG</a>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div id="hero-kaa" class="language-content active">
+                    <h1 class="fade-in">🇬🇦 ҚАРАҚАЛПАҚСТАННЫҢ СУВЕРЕНИТЕТИ</h1>
+                    <p class="fade-in">Ҳақыйқат тарийх ҳәм нызамшылық дәлиллер</p>
+                </div>
+                <div id="hero-ru" class="language-content">
+                    <h1 class="fade-in">🇷🇺 СУВЕРЕНИТЕТ КАРАКАЛПАКСТАНА</h1>
+                    <p class="fade-in">Правдивая история и правовые доказательства</p>
+                </div>
+                <div id="hero-en" class="language-content">
+                    <h1 class="fade-in">🇬🇧 SOVEREIGNTY OF KARAKALPAKSTAN</h1>
+                    <p class="fade-in">True History and Legal Evidence</p>
+                </div>
+            </div>
+        </section>
+
+## ✂️ БӨЛІМ 1 - ҚАРАҚАЛПАҚША
+
+```html
+<section class="content">
+<div class="container">
+<article class="article">
+<div id="content-kaa" class="language-content active">
+<h2>СУВЕРЕНИТЕТ ТАРИЙХЫ</h2>
+<div class="historical-event">
+<h3>📅 1990-жылғы тарийхый мәўрит</h3>
+<p>1990-жыл 14-декабрь Қарақалпақстан тарийхында ең әҳмийетли ўақыя болды. Қарақалпақстан Жоқарғы Кеңесиниң 186 депутаты бир аўыздан Мәмлекетлик суверенитет ҳаққындағы декларацияны қабыл етти.</p>
+</div>
+<h4>Үш тәреплеме келисим - 1990</h4>
+<div class="image-placeholder">
+[1-ФОТОСҮЎРЕТ ОРНЫ]<br>
+Сүўретте (шептен): Өзбекстан ССР Президенти И.А. Каримов, Қарақалпақстан ЖК Баслығы Даўлетбай Шамшетов ҳәм СССР Бас министри В.С. Павлов
+</div>
+<p>Бул тарийхый ушырасыўда СССР Бас министри В.С. Павлов Қарақалпақстанның Мәмлекетлик Суверенитети Декларациясын рәсмий түрде тән алды. Бул халықаралық дәрежедеги биринши рәсмий тән алыў болды.</p>
+<h3>1990-ЖЫЛҒЫ ДЕКЛАРАЦИЯ ТЕКСТИ</h3>
+<h4>Рәсмий ҳүжжет</h4>
+<div class="image-placeholder">
+[2-ФОТОСҮЎРЕТ ОРНЫ]<br>
+Қарақалпақстан Жоқарғы Кеңесиниң председатели Т.Ешимбетованың қолы қойылған рәсмий қарар - 1990-жыл 14-декабрь
+</div>
+<div class="image-placeholder">
+[3-ФОТОСҮЎРЕТ ОРНЫ]<br>
+"Еркин Қарақалпақстан" газетасында 1990-жыл 20-декабрьде жәрияланған Декларация
+</div>
+<div class="declaration-text">
+<h4>Декларацияның тийкарғы тексти:</h4>
+<p>"Қарақалпақстан Автономиялы Совет Социалистлик Республикасының Жоқарғы Кеңеси мәмлекетлик Суверенитет ҳаққында ДЕКЛАРАЦИЯ-ны қабыл етти:</p>
+<ol>
+<li>Қарақалпақстан мәмлекетлик суверенитетин тастыйықлаў</li>
+<li>Қарақалпақстан халқының өзин-өзи басқарыў ҳуқықын тастыйықлаў</li>
+<li>Өз аймағында толық бийлик етиў ҳуқықын жәриялаў</li>
+<li>Халықаралық қатнасықларға кириў имканиятын нәзерде тутыў</li>
+</ol>
+</div>
+<h2>ҚАРАҚАЛПАҚСТАН КОНСТИТУЦИЯСЫ</h2>
+<h3>Әмелдеги нызамлы статусы</h3>
+<p>Өзбекстан Конституциясының 85-статьясы бойынша Қарақалпақстан елеге шекем "Суверен республика" болып есапланады.</p>
+<h4>Конституциялық ҳуқықлар:</h4>
+<ul>
+<li>Өз конституциясына ийе болыў ҳуқықы</li>
+<li>Мәмлекетлик тиллерди белгилеў ҳуқықы</li>
+<li>Өз нызамшылағын қабыл етиў ҳуқықы</li>
+</ul>
+<h2>2022-ЖЫЛҒЫ КОНСТИТУЦИЯЛЫҚ КРИЗИС</h2>
+<h3>Не болды?</h3>
+<p>2022-жыл июльде Өзбекстан ҳүкимети Қарақалпақстанның "Суверен" статусын алып таслаўға ҳәрекет етти. Халық оған қарсы шықты.</p>
+<h4>Халық реакциясы</h4>
+<ul>
+<li>Нөкис ҳәм басқа қалаларда мыңлаған адам митингке шықты</li>
+<li>Дәўлетмурат Тажимуратов қамаққа алынды</li>
+<li>21 адам қайтыс болған, 500 ден аслам адам усланған</li>
+</ul>
+<h4>Өзбекстан Президенти Мирзиёевтиң жуўабы</h4>
+<p>Өзбекстан Президенти Нөкисте Жоқары Кеңесте жыйналыста Қарақалпақстанның Суверен статусына ҳеш қандай өзгерис киритпейтуғунын айтты. Бул Қарақалпақстанның Суверенитет ҳуқықларының әҳмийетин көрсетти.</p>
+<div class="video-container">
+<h3>Видеодалиллар</h3>
+<h4>2022-жыл 2-июль - Мирзиёевтиң баянаты</h4>
+<p>Президент Нөкисте: "Қарақалпақстанның суверен статусына ҳеш қандай өзгерис киргизилмейди"</p>
+<a href="https://youtu.be/dnULLksbU4M?si=rVKuRlkUFV2peECl" class="video-link" target="_blank">
+<i class="fab fa-youtube"></i> Видеоны көриў
+</a>
+</div>
+<div class="warning-box">
+<h4>⚠️ ӘҲМИЙЕТЛИ ЕСКЕРТПЕ!</h4>
+<p><strong>Қәлбеки ҳүжжетлерден сақланың!</strong></p>
+<p>Өзбекстан арнаўлы хызметлери (СГБ) Қарақалпақстанға байланыслы ҳүжжетлерди жалған етип таярлап, интернетке тарқатыў арқалы тарийхты бурмалаўға урынбақта.</p>
+<p><strong>Биз тек ғана рәсмий дереклерден пайдаланамыз:</strong></p>
+<ul>
+<li>1990-жыл 20-декабрьдеги "Еркин Қарақалпақстан" газетасы</li>
+<li>рәсмий мәмлекетлик архив ҳүжжетлери</li>
+<li>Тиккелей гүўалардың гүўалықлары</li>
+</ul>
+</div>
+<h2>ХАЛЫҚАРАЛЫҚ ҲУҚЫҚ ТИЙКАРЛАРЫ</h2>
+<h3>БМШ Режеси - 1-статья</h3>
+<p>"Барлық халықлардың тең ҳуқықлары ҳәм өзин-өзи басқарыўы"</p>
+<h3>Пуқаралық ҳәм сиясий ҳуқықлар ҳаққындағы пакт - 1-статья</h3>
+<p>"Барлық халықлар өзин-өзи басқарыў ҳуқықына ийе."</p>
+<h3>Халық аралық ҳуқық</h3>
+<p>Қарақалпақстанның автономиялық шәртнамасы Испаниядағы Баск провинциялары ямаса Финляндиядағы Аланд атаўлары сыяқлы халықаралық тәжирийбеге сәйкес келеди.</p>
+<div class="contact-section">
+<h3>✅ БАЙЛАНЫС:</h3>
+<div class="contact-info">
+<div class="contact-item">
+<i class="fas fa-envelope"></i>
+<span>info@karakalpakvoice.org</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-globe"></i>
+<span>karakalpakvoice.org</span>
+</div>
+</div>
+<div class="slogan">Бизлердиң даўысымызды еситиң! Ҳақыйқатлық жеңеди!</div>
+</div>
+</div>
+<div id="content-ru" class="language-content">
+<h2>ИСТОРИЯ СУВЕРЕНИТЕТА</h2>
+<div class="historical-event">
+<h3>📅 Историческое событие 1990 года</h3>
+<p>14 декабря 1990 года стало самым важным событием в истории Каракалпакстана. 186 депутатов Верховного Совета Каракалпакстана единогласно приняли Декларацию о государственном суверенитете.</p>
+</div>
+<h4>Трехсторонняя встреча - 1990</h4>
+<div class="image-placeholder">
+[МЕСТО ДЛЯ ФОТО 1]<br>
+На фото (слева направо): Президент Узбекской ССР И.А. Каримов, Председатель ВС Каракалпакстана Даулетбай Шамшетов и Председатель Совета Министров СССР В.С. Павлов
+</div>
+<p>На этой исторической встрече Председатель Совета Министров СССР В.С. Павлов официально признал Декларацию о государственном суверенитете Каракалпакстана. Это было первое официальное признание на международном уровне.</p>
+<h3>ТЕКСТ ДЕКЛАРАЦИИ 1990 ГОДА</h3>
+<div class="image-placeholder">
+[МЕСТО ДЛЯ ФОТО 2]<br>
+Официальное решение с подписью Председателя Верховного Совета Каракалпакстана Т.Ешимбетовой - 14 декабря 1990 года
+</div>
+<div class="image-placeholder">
+[МЕСТО ДЛЯ ФОТО 3]<br>
+Декларация, опубликованная в газете "Еркин Каракалпакстан" 20 декабря 1990 года
+</div>
+<div class="declaration-text">
+<h4>Основной текст Декларации:</h4>
+<p>"Верховный Совет Каракалпакской Автономной Советской Социалистической Республики принимает ДЕКЛАРАЦИЮ о государственном Суверенитете:</p>
+<ol>
+<li>Подтверждение государственного Суверенитета Каракалпакстана</li>
+<li>Подтверждение права народа Каракалпакстана на самоуправление</li>
+<li>Провозглашение права полной власти на своей территории</li>
+<li>Предусмотрение возможности вступления в международные отношения</li>
+</ol>
+</div>
+<h2>КОНСТИТУЦИЯ КАРАКАЛПАКСТАНА</h2>
+<h3>Действующий правовой статус</h3>
+<p>Согласно статье 85 Конституции Узбекистана, Каракалпакстан до сих пор считается "Суверенной республикой".</p>
+<h4>Конституционные права:</h4>
+<ul>
+<li>Право иметь собственную конституцию</li>
+<li>Право определять государственные языки</li>
+<li>Право принимать собственное законодательство</li>
+</ul>
+<h2>КОНСТИТУЦИОННЫЙ КРИЗИС 2022 ГОДА</h2>
+<h3>Что произошло?</h3>
+<p>В июле 2022 года правительство Узбекистана попыталось отменить "суверенный" статус Каракалпакстана. Народ выступил против этого.</p>
+<h4>Реакция народа</h4>
+<ul>
+<li>Тысячи людей вышли на митинги в Нукусе и других городах</li>
+<li>Даулетмурат Тажимуратов был арестован</li>
+<li>21 человек погиб, более 500 человек были задержаны</li>
+</ul>
+<h4>Ответ Президента Узбекистана Мирзиёева</h4>
+<p>Президент Узбекистана на собрании в Верховном Совете в Нукусе заявил, что никаких изменений в суверенный статус Каракалпакстана вноситься не будет. Это показало важность суверенных прав Каракалпакстана.</p>
+<div class="video-container">
+<h3>Видеодоказательства</h3>
+<h4>2 июля 2022 года - Заявление Мирзиёева</h4>
+<p>Президент в Нукусе: "Никаких изменений в суверенный статус Каракалпакстана вноситься не будет"</p>
+<a href="https://youtu.be/dnULLksbU4M?si=rVKuRlkUFV2peECl" class="video-link" target="_blank">
+<i class="fab fa-youtube"></i> Смотреть видео
+</a>
+</div>
+<div class="warning-box">
+<h4>⚠️ ВАЖНОЕ ПРЕДУПРЕЖДЕНИЕ!</h4>
+<p><strong>Остерегайтесь подложных документов!</strong></p>
+<p>Спецслужбы Узбекистана (СГБ) пытаются исказить историю, подготавливая поддельные документы, связанные с Каракалпакстаном, и распространяя их в интернете.</p>
+<p><strong>Мы используем только официальные источники:</strong></p>
+<ul>
+<li>Газета "Еркин Каракалпакстан" от 20 декабря 1990 года</li>
+<li>Официальные государственные архивные документы</li>
+<li>Свидетельства прямых очевидцев</li>
+</ul>
+</div>
+<h2>ОСНОВЫ МЕЖДУНАРОДНОГО ПРАВА</h2>
+<h3>Устав ООН - статья 1</h3>
+<p>"Равные права всех народов и их самоуправление"</p>
+<h3>Пакт о гражданских и политических правах - статья 1</h3>
+<p>"Все народы имеют право на самоопределение"</p>
+<h3>Международное право</h3>
+<p>Автономное соглашение Каракалпакстана соответствует международному опыту, такому как провинции Басков в Испании или Аландские острова в Финляндии.</p>
+<div class="contact-section">
+<h3>✅ СВЯЗЬ:</h3>
+<div class="contact-info">
+<div class="contact-item">
+<i class="fas fa-envelope"></i>
+<span>info@karakalpakvoice.org</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-globe"></i>
+<span>karakalpakvoice.org</span>
+</div>
+</div>
+<div class="slogan">Услышьте наш голос! Правда победит!</div>
+</div>
+</div>
+<div id="content-en" class="language-content">
+<h2>HISTORY OF SOVEREIGNTY</h2>
+<div class="historical-event">
+<h3>📅 Historic Event of 1990</h3>
+<p>December 14, 1990 became the most important event in the history of Karakalpakstan. 186 deputies of the Supreme Council of Karakalpakstan unanimously adopted the Declaration on State Sovereignty.</p>
+</div>
+<h4>Tripartite Meeting - 1990</h4>
+<div class="image-placeholder">
+[PHOTO PLACEHOLDER 1]<br>
+In the photo (left to right): President of Uzbek SSR I.A. Karimov, Chairman of Supreme Council of Karakalpakstan Dauletbay Shamshetov and Chairman of Council of Ministers of USSR V.S. Pavlov
+</div>
+<p>At this historic meeting, USSR Prime Minister V.S. Pavlov officially recognized the Declaration on State Sovereignty of Karakalpakstan. This was the first official recognition at the international level.</p>
+<h3>TEXT OF THE 1990 DECLARATION</h3>
+<div class="image-placeholder">
+[PHOTO PLACEHOLDER 2]<br>
+Official resolution signed by the Chairman of the Supreme Council of Karakalpakstan T.Eshimbetova - December 14, 1990
+</div>
+<div class="image-placeholder">
+[PHOTO PLACEHOLDER 3]<br>
+Declaration published in the newspaper "Free Karakalpakstan" on December 20, 1990
+</div>
+<div class="declaration-text">
+<h4>Main text of the Declaration:</h4>
+<p>"The Supreme Council of the Karakalpak Autonomous Soviet Socialist Republic adopts the DECLARATION on state sovereignty:</p>
+<ol>
+<li>Confirmation of state sovereignty of Karakalpakstan</li>
+<li>Confirmation of the right of the people of Karakalpakstan to self-governance</li>
+<li>Declaration of the right to full power in its territory</li>
+<li>Provision for the possibility of entering international relations</li>
+</ol>
+</div>
+<h2>CONSTITUTION OF KARAKALPAKSTAN</h2>
+<h3>Current Legal Status</h3>
+<p>According to Article 85 of the Constitution of Uzbekistan, Karakalpakstan is still considered a "Sovereign Republic".</p>
+<h4>Constitutional Rights:</h4>
+<ul>
+<li>Right to have its own constitution</li>
+<li>Right to determine state languages</li>
+<li>Right to adopt its own legislation</li>
+</ul>
+<h2>CONSTITUTIONAL CRISIS OF 2022</h2>
+<h3>What Happened?</h3>
+<p>In July 2022, the government of Uzbekistan attempted to remove the "sovereign" status of Karakalpakstan. The people opposed this.</p>
+<h4>People's Reaction</h4>
+<ul>
+<li>Thousands of people protested in Nukus and other cities</li>
+<li>Dauletmurat Tazhimuratov was arrested</li>
+<li>21 people died, more than 500 people were detained</li>
+</ul>
+<h4>Response of Uzbekistan President Mirziyoyev</h4>
+<p>The President of Uzbekistan at a meeting in the Supreme Council in Nukus stated that no changes would be made to the sovereign status of Karakalpakstan. This demonstrated the importance of Karakalpakstan's sovereign rights.</p>
+<div class="video-container">
+<h3>Video Evidence</h3>
+<h4>July 2, 2022 - Mirziyoyev's Statement</h4>
+<p>President in Nukus: "No changes will be made to the sovereign status of Karakalpakstan"</p>
+<a href="https://youtu.be/dnULLksbU4M?si=rVKuRlkUFV2peECl" class="video-link" target="_blank">
+<i class="fab fa-youtube"></i> Watch Video
+</a>
+</div>
+<div class="warning-box">
+<h4>⚠️ IMPORTANT WARNING!</h4>
+<p><strong>Beware of Falsified Documents!</strong></p>
+<p>Uzbekistan's special services (KGB) are attempting to distort history by preparing fake documents related to Karakalpakstan and spreading them on the internet.</p>
+<p><strong>We use only official sources:</strong></p>
+<ul>
+<li>"Free Karakalpakstan" newspaper from December 20, 1990</li>
+<li>Official state archive documents</li>
+<li>Testimonies of direct witnesses</li>
+</ul>
+</div>
+<h2>FOUNDATIONS OF INTERNATIONAL LAW</h2>
+<h3>UN Charter - Article 1</h3>
+<p>"Equal rights of all peoples and their self-determination"</p>
+<h3>International Covenant on Civil and Political Rights - Article 1</h3>
+<p>"All peoples have the right to self-determination"</p>
+<h3>International Law</h3>
+<p>Karakalpakstan's autonomous agreement corresponds to international experience such as the Basque provinces in Spain or the Åland Islands in Finland.</p>
+<div class="contact-section">
+<h3>✅ CONTACT:</h3>
+<div class="contact-info">
+<div class="contact-item">
+<i class="fas fa-envelope"></i>
+<span>info@karakalpakvoice.org</span>
+</div>
+<div class="contact-item">
+<i class="fas fa-globe"></i>
+<span>karakalpakvoice.org</span>
+</div>
+</div>
+<div class="slogan">Hear our voice! Truth will prevail!</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+    </main>
