@@ -1,37 +1,1254 @@
+html
 <!DOCTYPE html>
 <html lang="kaa">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Karakalpak Voice</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қарақалпақ Voice - Ғәрезсиз Мәлимлеме Платформасы</title>
+    <meta name="description" content="Қарақалпақстан халқының даўысын дүньяға жеткериў ушын жаратылған ғәрезсиз медиа платформасы">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .language-selector {
+            display: flex;
+            gap: 5px;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: #ffcc00;
+            color: #1e3c72;
+        }
+        
+        .donate-btn {
+            background: #ff4444;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .donate-btn:hover {
+            background: #ff6666;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 68, 68, 0.3);
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        /* Navigation */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 10px 0;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .nav-menu a:hover {
+            background: rgba(255, 204, 0, 0.2);
+            color: #ffcc00;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0099cc, #0066cc);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .btn {
+            background: #ffcc00;
+            color: #1e3c72;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 204, 0, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #0066cc;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-left: 5px solid #ffcc00;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #0066cc;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #1e3c72;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* About Section */
+        .about {
+            background: #f8f9fa;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .mission-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .mission-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .mission-list li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .principles-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .principle-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .principle-item .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+        
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .news-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .news-image {
+            height: 200px;
+            background: linear-gradient(45deg, #0066cc, #0099cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .news-card h3 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .news-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .read-more {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .read-more:hover {
+            color: #004080;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact .section-title {
+            color: white;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .contact-item {
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item .icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 15px;
+            color: #ffcc00;
+        }
+        
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .contact-item a:hover {
+            color: #ffcc00;
+        }
+      html
+        /* Footer */
+        .footer {
+            background: #0d1929;
+            color: white;
+            padding: 50px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            padding: 5px 0;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section ul li a:hover {
+            color: #ffcc00;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            color: #666;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #1e3c72;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Donation Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .donation-methods {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .donation-method {
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .donation-method:hover {
+            border-color: #0066cc;
+            background: #f8f9fa;
+        }
+        
+        .donation-method .icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #0066cc;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Language Content */
+        .lang-content {
+            display: none;
+        }
+        
+        .lang-content.active {
+            display: block;
+        }
+        
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: none;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .scroll-top:hover {
+            background: #004080;
+            transform: translateY(-3px);
+        }
+        
+        .scroll-top.visible {
+            display: block;
+        }
+
+        /* Sovereignty Section Specific Styles */
+        .sovereignty {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+        
+        .sovereignty .section-title {
+            color: white;
+        }
+        
+        .sovereignty-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 50px;
+        }
+        
+        .sovereignty-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .sovereignty-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .stat-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffcc00;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>KarakalpakVoice.org</h1>
-    <p>Қарақалпақ даўысы — халық үниси!</p>
-  </header>
-  <main>
-    <section>
-      <h2>Жоба туўралы</h2>
-      <p>Бул сайт Қарақалпақ халқиниң даўысын әлемге естириў ушын жаралған.</p>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo">KarakalpakVoice.org</a>
+            
+            <nav class="nav-menu" id="navMenu">
+                <li><a href="#home">Бас бет</a></li>
+                <li><a href="#about">Биз туўралы</a></li>
+                <li><a href="#sovereignty">Суверенитет</a></li>
+                <li><a href="#news">Жаңалықлар</a></li>
+                <li><a href="#culture">Мәденият</a></li>
+                <li><a href="#contact">Байланыс</a></li>
+            </nav>
+            
+            <div class="header-controls">
+                <div class="language-selector">
+                    <button class="lang-btn active" onclick="switchLanguage('kaa')">🏳️ ҚҚ</button>
+                    <button class="lang-btn" onclick="switchLanguage('ru')">🇷🇺 РУ</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')">🇺🇸 EN</button>
+                </div>
+                <a href="#" class="donate-btn" onclick="openDonationModal()">💰 Қайыр-қомлық</a>
+            </div>
+            
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="lang-content active" id="content-kaa">
+                <h1>Қарақалпақ даўысы — халық үни!</h1>
+                <p class="subtitle">Қарақалпақстан халқының даўысын дүньяға жеткериў ушын жаратылған ғәрезсиз медиа платформасы. Биз халқымыздың тарийхын, мәдениятын, ҳақыйқатын ҳәм келешек әрманларын дүньяға жеткериўге ҳәрекет етемиз.</p>
+            </div>
+            
+            <div class="lang-content" id="content-ru">
+                <h1>Каракалпакский голос — голос народа!</h1>
+                <p class="subtitle">Независимая медиа-платформа для донесения голоса каракалпакского народа до мира. Мы стремимся рассказать миру об истории, культуре, правде и будущих мечтах нашего народа.</p>
+            </div>
+            
+            <div class="lang-content" id="content-en">
+                <h1>Karakalpak Voice — Voice of the People!</h1>
+                <p class="subtitle">An independent media platform created to bring the voice of the Karakalpak people to the world. We strive to tell the world about the history, culture, truth and future dreams of our people.</p>
+            </div>
+            
+            <div class="hero-buttons">
+                <a href="#news" class="btn">📰 Жаңалықларды оқыў</a>
+                <a href="#about" class="btn btn-secondary">📖 Биз туўралы</a>
+                <a href="#sovereignty" class="btn btn-secondary">🏛️ Суверенитет</a>
+            </div>
+        </div>
     </section>
-    <section>
-      <h2>Ботлар</h2>
-      <ul>
-        <li>@AntiSpamKarakalpak_Bot</li>
-        <li>@VoiceView_bot</li>
-        <li>@KaraXabarBot</li>
-        <li>@QaraVideo_Bot</li>
-      </ul>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Бизиң мүмкиншиликлеримиз</h2>
+            <p class="section-subtitle">Цензурасыз жаңалықлар, ҳуқықты қорғаў, мәдений мийрас ҳәм тилди сақлаў</p>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📰</div>
+                    <h3>Цензурасыз жаңалықлар</h3>
+                    <p>Сиясий, жәмийетлик, социаллық жаңалықларды шынайы ҳәм объективли жеткиземиз. Ҳақыйқый мәлиметлерди тарқатамыз.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🏛️</div>
+                    <h3>Мәденият ҳәм тарийх</h3>
+                    <p>Қарақалпақ халқының бай тарийхы, дәстүрлери ҳәм миллий көркем өнери туўралы толық мәлиметлер.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚖️</div>
+                    <h3>Ҳуқықты қорғаў</h3>
+                    <p>Адам ҳуқықлары, мәдений ҳуқықлар ҳәм халықтың ғәрезсизлик ҳуқықларын қорғаў.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Тил үйретиў</h3>
+                    <p>Қарақалпақ тилин үйретиў системасы, онлайн сөзлик ҳәм тил дамытыў программалары.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Халықаралық байланыс</h3>
+                    <p>Дүня жәмийетшилиги менен байланыс орнатыў ҳәм халықаралық қоллап-қуўатлаў.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Заманагөй технологиялар</h3>
+                    <p>Заманагөй санлы технологияларды қолланып, мағлыўматларды тез ҳәм тийкарлы жеткериў.</p>
+                </div>
+            </div>
+        </div>
     </section>
-    <section>
-      <h2>Байланыс</h2>
-      <p>Email: contact@karakalpakvoice.org</p>
+
+    <!-- About Section -->
+    <section class="about section" id="about">
+        <div class="container">
+            <h2 class="section-title">Биз туўралы</h2>
+            
+            <div class="about-content">
+                <div>
+                    <h3 style="color: #1e3c72; font-size: 2rem; margin-bottom: 2rem;">Бизиң миссиямыз</h3>
+                    <ul class="mission-list">
+                        <li>Қарақалпақ халқының даўысын әлемге жеткизиў</li>
+                        <li>Цензурасыз ҳәм объективли мәлимет бериў</li>
+                        <li>Мәдений мийрас пенен тилди сақлаў</li>
+                        <li>Халықтың ҳуқықларын қорғаў</li>
+                        <li>Жас буўынға билим бериў</li>
+                        <li>Халықаралық байланыс орнатыў</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 style="color: #1e3c72; font-size: 2rem; margin-bottom: 2rem;">Бизиң принциплеримиз</h3>
+                    <div class="principles-list">
+                        <div class="principle-item">
+                            <div class="icon">🔓</div>
+                            <h4>Ашықлық</h4>
+                            <p>Ҳәммеге ашық мәлимет</p>
+                        </div>
+                        <div class="principle-item">
+                            <div class="icon">🌍</div>
+                            <h4>Көп тиллик</h4>
+                            <p>3 тилде хызмет</p>
+                        </div>
+                        <div class="principle-item">
+                            <div class="icon">⚖️</div>
+                            <h4>Объективлилик</h4>
+                            <p>Ҳақыйқат жаңалықлар</p>
+                        </div>
+                        <div class="principle-item">
+                            <div class="icon">🛡️</div>
+                            <h4>Қәўипсизлик</h4>
+                            <p>Қорғалған байланыс</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 4rem; text-align: center; padding: 3rem; background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                <h3 style="color: #1e3c72; font-size: 1.8rem; margin-bottom: 1rem;">Команда</h3>
+                <p style="font-size: 1.1rem; color: #666; line-height: 1.8;">Биз - жас журналистлер, блогерлер ҳәм белсендилер топарымыз. Бизиң махсетимиз - Қарақалпақстан ҳаққында дурыс мәлимлемени дүньяға тарқатыў ҳәм халқымыз даўысын күшейтиў.</p>
+                <p style="font-size: 1rem; color: #999; margin-top: 1rem;">📍 Мекен-жай: Варшава, Польша</p>
+            </div>
+        </div>
     </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 KarakalpakVoice. Барлық құқықлар қорғалған.</p>
-  </footer>
+
+    <!-- Sovereignty Section -->
+    <section class="sovereignty section" id="sovereignty">
+        <div class="container">
+            <h2 class="section-title">🏛️ Суверенитет</h2>
+            <p class="section-subtitle">Қарақалпақстанның ғәрезсизлик ҳуқықы ҳәм халықтың өз тәғдирин өзи шешиў ҳуқықы</p>
+            
+            <div class="sovereignty-content">
+                <div class="sovereignty-text">
+                    <h3 style="color: #ffcc00; font-size: 2rem; margin-bottom: 2rem;">Ғәрезсизлик — табийий ҳуқық</h3>
+                    <p style="margin-bottom: 1.5rem;">Қарақалпақстан Республикасы өз тарийхы, мәденияты ҳәм тилин сақлап қалған әййемги халық. Бизиң суверенитетимиз - бул мың жыллар даўамында раўажланған мәдениятымыздың нәтийжеси.</p>
+                    
+                    <p style="margin-bottom: 1.5rem;">Халықтың өз тәғдирин өзи белгилеў ҳуқықы - халықаралық ҳуқықтың тийкарғы принциплеринен бири. Биз өз ҳуқықларымызды демократиялық принциплер тийкарында тыныш жол менен қорғаймыз.</p>
+                    
+                    <p>Суверенитет дегенде тек ғана сиясий ғәрезсизлик емес, ал:</p>
+                    <ul style="margin-top: 1rem; padding-left: 2rem;">
+                        <li>Мәдений ғәрезсизлик</li>
+                        <li>Тил ҳуқықлары</li>
+                        <li>Экономикалық ҳуқықлар</li>
+                        <li>Дин ғәрезсизлиги</li>
+                        <li>Билим алыў ҳуқықы</li>
+                    </ul>
+                </div>
+                
+                <div class="sovereignty-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2000+</span>
+                        <div class="stat-label">Жыллық тарийх</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1.8М</span>
+                        <div class="stat-label">Халық саны</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">164К</span>
+                        <div class="stat-label">Аймақ (км²)</div>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <div class="stat-label">Ғәрезсизлик ҳуқықы</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 4rem; padding: 3rem; background: rgba(255,255,255,0.1); border-radius: 15px; backdrop-filter: blur(10px);">
+                <h3 style="color: #ffcc00; font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Халықаралық ҳуқық негизинде</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">📜</div>
+                        <h4 style="color: #ffcc00; margin-bottom: 1rem;">БМШ Хартиясы</h4>
+                        <p>Халықлардың тең ҳуқыққа ийе болыўы ҳәм өз тәғдирин өзи шешиў принципи</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">⚖️</div>
+                        <h4 style="color: #ffcc00; margin-bottom: 1rem;">Халықаралық пактлер</h4>
+                        <p>Пуқаралық ҳәм сиясий ҳуқықлар ҳаққындағы халық аралық пакт</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🌍</div>
+                        <h4 style="color: #ffcc00; margin-bottom: 1rem;">ОБСЕ принциплери</h4>
+                        <p>Азшылықлар ҳуқықларын қорғаў ҳәм мәдений автономия</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="section" id="news">
+        <div class="container">
+            <h2 class="section-title">Соңғы жаңалықлар</h2>
+            <p class="section-subtitle">Қарақалпақстан ҳәм дүньядағы әҳмийетли ўақыялар ҳаққында</p>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">📰</div>
+                    <div class="news-content">
+                        <div class="news-date">11 июнь 2025</div>
+                        <h3>Арал теңизиниң экологиялық жағдайы</h3>
+                        <p>Арал теңизи аймағындағы экологиялық проблемалар ҳәм оларды шешиў жоллары туўралы жаңа иззертлеўлер...</p>
+                        <a href="#" class="read-more">Толығырақ оқыў →</a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image">🏛️</div>
+                    <div class="news-content">
+                        <div class="news-date">10 июнь 2025</div>
+                        <h3>Қарақалпақ тилиниң мәртебеси</h3>
+                        <p>Қарақалпақ тилиниң мәмлекетлик тил сыпатындағы статусы ҳәм оның қолланылыў көлемин кеңейтиў мәселелери....</p>
+                        <a href="#" class="read-more">Толығырақ оқыў →</a>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image">🎭</div>
+                    <div class="news-content">
+                        <div class="news-date">9 июнь 2025</div>
+                        <h3>Мәдений мийрасты сақлаў</h3>
+                        <p>Қарақалпақ халқының дәстүрли мәдениятын сақлаў ҳәм жас әўладқа жеткериў бойынша
+                          html
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="icon">📧</div>
+                    <h3>Бас редактор</h3>
+                    <p><a href="mailto:admin@karakalpakvoice.org">admin@karakalpakvoice.org</a></p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon">📰</div>
+                    <h3>Жаңалықлар</h3>
+                    <p><a href="mailto:news@karakalpakvoice.org">news@karakalpakvoice.org</a></p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon">💼</div>
+                    <h3>Жарнама</h3>
+                    <p><a href="mailto:ads@karakalpakvoice.org">ads@karakalpakvoice.org</a></p>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="icon">📱</div>
+                    <h3>Социаллық тармақлар</h3>
+                    <p>
+                        <a href="#" style="margin-right: 10px;">Facebook</a>
+                        <a href="#" style="margin-right: 10px;">Instagram</a>
+                        <a href="#" style="margin-right: 10px;">Twitter</a>
+                        <a href="#">Telegram</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="#home">Бас бет</a></li>
+                        <li><a href="#about">Биз туўралы</a></li>
+                        <li><a href="#sovereignty">Суверенитет</a></li>
+                        <li><a href="#news">Жаңалықлар</a></li>
+                        <li><a href="#culture">Мәденият</a></li>
+                        <li><a href="#contact">Байланыс</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Бөлимлер</h3>
+                    <ul>
+                        <li><a href="#">Сиясат</a></li>
+                        <li><a href="#">Тарийх</a></li>
+                        <li><a href="#">Спорт</a></li>
+                        <li><a href="#">География</a></li>
+                        <li><a href="#">Дәстүр</a></li>
+                        <li><a href="#">Экономика</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Хызметлер</h3>
+                    <ul>
+                        <li><a href="#">Медиа архив</a></li>
+                        <li><a href="#">Тил үйретиў</a></li>
+                        <li><a href="#">Форум</a></li>
+                        <li><a href="#">Әдебият</a></li>
+                        <li><a href="#">Мобил қолланба</a></li>
+                        <li><a href="#">Подкастлар</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Нызамшылық</h3>
+                    <ul>
+                        <li><a href="#">Жекелик сиясаты</a></li>
+                        <li><a href="#">Пайдаланыў шәртлери</a></li>
+                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#">Қәўипсизлик</a></li>
+                        <li><a href="#">Жарнама сиясаты</a></li>
+                        <li><a href="#">Байланыс</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 KarakalpakVoice.org - Барлық ҳуқықлар қорғалған. Варшава, Польша.</p>
+                <p style="margin-top: 10px; font-size: 0.9rem;">Қарақалпақстан халқының ғәрезсиз даўысы</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Donation Modal -->
+    <div class="modal" id="donationModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeDonationModal()">&times;</span>
+            <h2>💰 Қәўендерлик</h2>
+            <p style="text-align: center; margin-bottom: 20px; color: #666;">Бизди қоллап-қуўатлаў ушын төмендеги усыллардан бирин таңлаң.</p>
+            
+            <div class="donation-methods">
+                <div class="donation-method">
+                    <div class="icon">₿</div>
+                    <h4>Bitcoin</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Криптовалюта арқалы анонимли қоллаў</p>
+                </div>
+                
+                <div class="donation-method">
+                    <div class="icon">🔒</div>
+                    <h4>Monero</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Толық жасырын пул өткериў</p>
+                </div>
+                
+                <div class="donation-method">
+                    <div class="icon">💳</div>
+                    <h4>Kaspi QR</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Қазақстаннан тез аударыў</p>
+                </div>
+                
+                <div class="donation-method">
+                    <div class="icon">🌍</div>
+                    <h4>Patreon</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Ай сайынғы қоллап-қуўатлаў</p>
+                </div>
+                
+                <div class="donation-method">
+                    <div class="icon">💰</div>
+                    <h4>PayPal</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Халықаралық аўдарыў</p>
+                </div>
+                
+                <div class="donation-method">
+                    <div class="icon">🏦</div>
+                    <h4>Банк аударыў</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Тиккелей банк арқалы</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 20px; font-size: 0.9rem; color: #666;">
+                Сизиң қоллап-қуўатлаўыңыз арқалы биз Қарақалпақ халқының даўысын дүньяға жеткере аламыз. Рахмет!
+            </p>
+        </div>
+    </div>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Language switching
+        function switchLanguage(lang) {
+            // Remove active class from all language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Add active class to selected language button
+            event.target.classList.add('active');
+            
+            // Hide all language content
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected language content
+            document.getElementById('content-' + lang).classList.add('active');
+        }
+
+        // Donation modal
+        function openDonationModal() {
+            document.getElementById('donationModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDonationModal() {
+            document.getElementById('donationModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('donationModal');
+            if (event.target === modal) {
+                closeDonationModal();
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.getElementById('scrollTop');
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('visible');
+            } else {
+                scrollTop.classList.remove('visible');
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.pageYOffset > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(30, 60, 114, 0.95), rgba(42, 82, 152, 0.95))';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72, #2a5298)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('navMenu').classList.remove('active');
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add loading animation
+            document.body.style.opacity = '0';
+            setTimeout(function() {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+            
+            // Initialize animations
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            // Observe all feature cards and news cards
+            document.querySelectorAll('.feature-card, .news-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            // Close modal with Escape key
+            if (e.key === 'Escape') {
+                closeDonationModal();
+            }
+        });
+    </script>
 </body>
-</html>
+                </html>
+                          
