@@ -1,1034 +1,503 @@
-<!-- 1️⃣ HTML ӨЗГЕРИСЛЕРИ -->
-<!-- Тил түймелерин өзгертиң: -->
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Қарақалпақ Voice - Қарақалпақ тілін дамыту</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<div class="language-switcher">
-    <button onclick="switchLanguage('qar')" class="lang-btn active" data-lang="qar">
-        <span class="flag">🏳️</span> KK
-    </button>
-    <button onclick="switchLanguage('rus')" class="lang-btn" data-lang="rus">
-        <span class="flag">🇷🇺</span> РУ
-    </button>
-    <button onclick="switchLanguage('eng')" class="lang-btn" data-lang="eng">
-        <span class="flag">🇺🇸</span> EN
-    </button>
-</div>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-<!-- Барлық текстке data-lang атрибутларын қосыңыз: -->
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-<!-- Мысал - Header тексти: -->
-<h1 data-lang-qar="Қарақалпақ даўысы — халық үни!" 
-    data-lang-rus="Каракалпакский голос — голос народа!" 
-    data-lang-eng="Karakalpak Voice — Voice of the People!">
-    Қарақалпақ даўысы — халық үни!
-</h1>
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
 
-<!-- Мысал - Кнопкалар: -->
-<button class="news-btn" 
-        data-lang-qar="📰 Жаңалықларды оқыў" 
-        data-lang-rus="📰 Читать новости" 
-        data-lang-eng="📰 Read News">
-    📰 Жаңалықларды оқыў
-</button>
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
 
-<button class="about-btn" 
-        data-lang-qar="📖 Биз туўралы" 
-        data-lang-rus="📖 О нас" 
-        data-lang-eng="📖 About Us">
-    📖 Біз туўралы
-</button>
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
-<!-- Мысал - Описание: -->
-<p data-lang-qar="Қарақалпақстан халқының даўысын дүньяға жеткериў ушын жаратылған ғәрезсиз медиа платформасы." 
-   data-lang-rus="Независимая медиа-платформа для донесения голоса Каракалпакского народа до мира." 
-   data-lang-eng="An independent media platform created to bring the voice of the Karakalpak people to the world.">
-    Қарақалпақстан халқының даўысын дүньяға жеткериў ушын жаратылған ғәрезсиз медиа платформасы.
-</p>
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
 
-<!-- Мысал - Меню элементлери: -->
-<nav class="main-menu">
-    <a href="#news" data-lang-qar="Жаңалықлар" data-lang-rus="Новости" data-lang-eng="News">Жаңалықлар</a>
-    <a href="#politics" data-lang-qar="Сиясат" data-lang-rus="Политика" data-lang-eng="Politics">Сиясат</a>
-    <a href="#history" data-lang-qar="Тарийх" data-lang-rus="История" data-lang-eng="History">Тарийх</a>
-    <a href="#culture" data-lang-qar="Мәденият" data-lang-rus="Культура" data-lang-eng="Culture">Мәденият</a>
-    <a href="#media" data-lang-qar="Медиа" data-lang-rus="Медиа" data-lang-eng="Media">Медиа</a>
-</nav>
+        .lang-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
 
-<!-- ҚОСЫМША: Donation/Support кнопкалары -->
-<div class="support-section">
-    <h3 data-lang-qar="💰 Жойбарды қоллап-қуўатлаў" 
-        data-lang-rus="💰 Поддержать проект" 
-        data-lang-eng="💰 Support Project">
-        💰 Жойбарды қоллап-қуўатлаў
-    </h3>
-    
-    <!-- Орта Азия ушын ең белгили пул өткериў усыллары -->
-    <div class="payment-methods">
-        <!-- Peysend (ең белгили Орта Азияда) -->
-        <button class="payment-btn peysend-btn" onclick="openPayment('peysend')">
-            <span class="payment-icon">💳</span>
-            <div class="payment-info">
-                <span class="payment-name" data-lang-qar="Peysend арқалы" 
-                      data-lang-rus="Через Peysend" 
-                      data-lang-eng="Via Peysend">Peysend арқалы</span>
-                <span class="payment-desc" data-lang-qar="Орта Азия халқы ушын" 
-                      data-lang-rus="Для народов Центральной Азии" 
-                      data-lang-eng="For Central Asian people">Орта Азия халқы ушын</span>
-            </div>
-        </button>
-        
-        <!-- Kaspi.kz (Қазақстан) -->
-        <button class="payment-btn kaspi-btn" onclick="openPayment('kaspi')">
-            <span class="payment-icon">🏦</span>
-            <div class="payment-info">
-                <span class="payment-name" data-lang-qar="Kaspi.kz" 
-                      data-lang-rus="Kaspi.kz" 
-                      data-lang-eng="Kaspi.kz">Kaspi.kz</span>
-                <span class="payment-desc" data-lang-qar="Қазақстан ушын" 
-                      data-lang-rus="Для Казахстана" 
-                      data-lang-eng="For Kazakhstan">Қазақстан ушын</span>
-            </div>
-        </button>
-        
-        <!-- Kaspi Gold (Premium) -->
-        <button class="payment-btn kaspi-gold-btn" onclick="openPayment('kaspi-gold')">
-            <span class="payment-icon">🥇</span>
-            <div class="payment-info">
-                <span class="payment-name" data-lang-qar="Kaspi Gold" 
-                      data-lang-rus="Kaspi Gold" 
-                      data-lang-eng="Kaspi Gold">Kaspi Gold</span>
-                <span class="payment-desc" data-lang-qar="Премиум карта" 
-                      data-lang-rus="Премиум карта" 
-                      data-lang-eng="Premium card">Премиум карта</span>
-            </div>
-        </button>
-        
-        <!-- PayPal (халықаралық) -->
-        <button class="payment-btn paypal-btn" onclick="openPayment('paypal')">
-            <span class="payment-icon">🌍</span>
-            <div class="payment-info">
-                <span class="payment-name" data-lang-qar="PayPal" 
-                      data-lang-rus="PayPal" 
-                      data-lang-eng="PayPal">PayPal</span>
-                <span class="payment-desc" data-lang-qar="Халықаралық" 
-                      data-lang-rus="Международный" 
-                      data-lang-eng="International">Халықаралық</span>
-            </div>
-        </button>
-        
-        <!-- Crypto (Bitcoin/USDT) -->
-        <button class="payment-btn crypto-btn" onclick="openPayment('crypto')">
-            <span class="payment-icon">₿</span>
-            <div class="payment-info">
-                <span class="payment-name" data-lang-qar="Криптовалюта" 
-                      data-lang-rus="Криптовалюта" 
-                      data-lang-eng="Cryptocurrency">Криптовалюта</span>
-                <span class="payment-desc" data-lang-qar="Bitcoin/USDT" 
-                      data-lang-rus="Bitcoin/USDT" 
-                      data-lang-eng="Bitcoin/USDT">Bitcoin/USDT</span>
-            </div>
-        </button>
-    </div>
-    
-    <!-- Қоллаў тексти -->
-    <p class="support-text" 
-       data-lang-qar="Сизиң жәрдемиңиз арқалы Қарақалпақстан халқының даўысын дүньяға жеткиземиз!" 
-       data-lang-rus="С вашей помощью мы донесем голос народа Каракалпакстана до всего мира.!" 
-       data-lang-eng="With your help, we will convey the voice of the people of Karakalpakstan to the world.!">
-        Сизиң жәрдемиңиз арқалы Қарақалпақстан халқының даўысын дүньяға жеткиземиз!
-    </p>
-</div>
+        .lang-btn.active {
+            background: white;
+            color: #667eea;
+        }
 
-<!-- Payment Modal (толық экран) -->
-<div id="paymentModal" class="payment-modal">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closePayment()">&times;</span>
-        <div id="modalBody"></div>
-    </div>
-</div>
+        .lang-btn:not(.active) {
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
 
-<!-- 2️⃣ CSS СТИЛЬЛЕР -->
-<style>
-/* Тил өзгертиў стильлери */
-.language-switcher {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
 
-.lang-btn {
-    background: linear-gradient(135deg, #4F46E5, #7C3AED);
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
-}
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-.lang-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
-    background: linear-gradient(135deg, #5B21B6, #1E40AF);
-}
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
 
-.lang-btn.active {
-    background: linear-gradient(135deg, #F59E0B, #EF4444);
-    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
-    transform: scale(1.05);
-}
+        .nav-item {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-.lang-btn.active:hover {
-    background: linear-gradient(135deg, #D97706, #DC2626);
-}
+        .nav-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
 
-.flag {
-    font-size: 16px;
-}
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
 
-/* Анимация тил өзгертиў уақытында */
-.language-transition {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
 
-.language-transition.show {
-    opacity: 1;
-}
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
 
-/* FreedomLab стилиндеги қосымша элементлер */
-.geometric-shape {
-    position: absolute;
-    opacity: 0.1;
-    z-index: -1;
-}
+        /* Content Sections */
+        .content-section {
+            display: none;
+            padding: 3rem 0;
+            min-height: 400px;
+        }
 
-.shape-1 {
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(45deg, #4F46E5, #7C3AED);
-    border-radius: 50%;
-    top: 10%;
-    left: 5%;
-    animation: float 6s ease-in-out infinite;
-}
+        .content-section.active {
+            display: block;
+        }
 
-.shape-2 {
-    width: 150px;
-    height: 150px;
-    background: linear-gradient(45deg, #F59E0B, #EF4444);
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    top: 60%;
-    right: 10%;
-    animation: float 8s ease-in-out infinite reverse;
-}
+        .content-section h2 {
+            color: #667eea;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-align: center;
+        }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-}
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
 
-/* Payment кнопкаларының стильлери */
-.support-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 40px 20px;
-    border-radius: 20px;
-    margin: 40px 0;
-    text-align: center;
-    color: white;
-}
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
-.payment-methods {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin: 30px 0;
-}
+        .content-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
 
-.payment-btn {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 20px;
-    color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: left;
-}
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
 
-.payment-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
+        /* Payment Section */
+        .payment-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 0;
+            margin: 3rem 0;
+            border-radius: 20px;
+        }
 
-.payment-icon {
-    font-size: 24px;
-    min-width: 40px;
-    text-align: center;
-}
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
 
-.payment-info {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
+        .payment-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
 
-.payment-name {
-    font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
+        .payment-card:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
 
-.payment-desc {
-    font-size: 12px;
-    opacity: 0.8;
-}
+        .payment-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
 
-/* Региональные цвета */
-.peysend-btn:hover {
-    background: linear-gradient(135deg, #FF6B6B, #4ECDC4);
-}
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
 
-.kaspi-btn:hover {
-    background: linear-gradient(135deg, #00A8CC, #0077BE);
-}
-
-.kaspi-gold-btn:hover {
-    background: linear-gradient(135deg, #FFD700, #FFA500);
-}
-
-.kaspi-gold-btn {
-    border: 2px solid rgba(255, 215, 0, 0.3) !important;
-}
-
-.paypal-btn:hover {
-    background: linear-gradient(135deg, #0070BA, #00457C);
-}
-
-.crypto-btn:hover {
-    background: linear-gradient(135deg, #F7931A, #FFD700);
-}
-
-.support-text {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-top: 20px;
-    font-style: italic;
-}
-
-/* Payment Modal стильлери */
-.payment-modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    margin: 5% auto;
-    padding: 30px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 500px;
-    color: white;
-    position: relative;
-    animation: modalSlideIn 0.3s ease;
-}
-
-@keyframes modalSlideIn {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.close-btn {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
-    opacity: 0.8;
-}
-
-.close-btn:hover {
-    opacity: 1;
-}
-
-.payment-details {
-    text-align: center;
-}
-
-.qr-code {
-    width: 200px;
-    height: 200px;
-    background: white;
-    margin: 20px auto;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-    font-weight: bold;
-}
-
-.payment-address {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 10px;
-    margin: 15px 0;
-    word-break: break-all;
-    font-family: monospace;
-}
-
-.copy-btn {
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 10px 5px;
-}
-
-.copy-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Responsive дизайн */
-@media (max-width: 768px) {
-    .language-switcher {
-        gap: 8px;
-        margin: 15px 0;
-    }
-    
-    .lang-btn {
-        padding: 10px 16px;
-        font-size: 12px;
-    }
-    
-    .flag {
-        font-size: 14px;
-    }
-    
-    .payment-methods {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .payment-btn {
-        padding: 15px;
-    }
-    
-    .modal-content {
-        margin: 10% auto;
-        width: 95%;
-        padding: 20px;
-    }
-    
-    .payment-address {
-        font-size: 14px;
-        padding: 12px;
-    }
-}
-</style>
-
-<!-- 3️⃣ JAVASCRIPT ФУНКЦИЯЛАР -->
-<script>
-// Тил өзгертиўдиң тийкарғы функциясы
-function switchLanguage(selectedLang) {
-    // Кнопкалардың active класын басқарыў
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-lang="${selectedLang}"]`).classList.add('active');
-
-    // Барлық элементлерди табыў, тилин өзгертиў
-    document.querySelectorAll('[data-lang-qar]').forEach(element => {
-        // Анимация қосыў
-        element.classList.add('language-transition');
-        
-        setTimeout(() => {
-            // Тілге сәйкес текстти өзгертиў
-            switch(selectedLang) {
-                case 'qar':
-                    element.textContent = element.dataset.langQar;
-                    break;
-                case 'rus':
-                    element.textContent = element.dataset.langRus;
-                    break;
-                case 'eng':
-                    element.textContent = element.dataset.langEng;
-                    break;
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
             }
-            
-            // Анимацияны тамамлаў
-            element.classList.remove('language-transition');
-            element.classList.add('show');
-        }, 150);
-    });
 
-    // Таңланған тилди localStorage-ге сақлаў
-    localStorage.setItem('selectedLanguage', selectedLang);
-    
-    // URL-ды жаңалаў (қосымша)
-    updateURL(selectedLang);
-    
-    // Console-ға лог жазыў
-    console.log(`Тил өзгертилди: ${selectedLang}`);
-}
+            .hero p {
+                font-size: 1.1rem;
+            }
 
-// URL жаңалаў функциясы
-function updateURL(lang) {
-    const currentURL = window.location.href;
-    const baseURL = currentURL.split('?')[0];
-    const newURL = `${baseURL}?lang=${lang}`;
-    
-    // History API арқалы URL өзгертиў (бет reload етпей)
-    window.history.replaceState({}, '', newURL);
-}
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
 
-// Бет жүкленген ўақытта тилди қайта тиклеў
-document.addEventListener('DOMContentLoaded', function() {
-    // URL-дан тилди оқыў
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlLang = urlParams.get('lang');
-    
-    // localStorage-дан тилди оқыў
-    const savedLang = localStorage.getItem('selectedLanguage');
-    
-    // Браузер тилин анықлаў
-    const browserLang = navigator.language || navigator.userLanguage;
-    
-    // Приоритет: URL > localStorage > Browser > Default(qar)
-    let defaultLang = 'qar';
-    
-    if (urlLang && ['qar', 'rus', 'eng'].includes(urlLang)) {
-        defaultLang = urlLang;
-    } else if (savedLang && ['qar', 'rus', 'eng'].includes(savedLang)) {
-        defaultLang = savedLang;
-    } else if (browserLang.startsWith('ru')) {
-        defaultLang = 'rus';
-    } else if (browserLang.startsWith('en')) {
-        defaultLang = 'eng';
-    }
-    
-    // Тилди орнатыў
-    switchLanguage(defaultLang);
-    
-    // Geometric shapes қосыў (FreedomLab стили)
-    addGeometricShapes();
-});
-
-// FreedomLab стилинедеги geometric shapes қосыў
-function addGeometricShapes() {
-    const shapes = [
-        { class: 'shape-1', delay: 0 },
-        { class: 'shape-2', delay: 2000 },
-    ];
-    
-    shapes.forEach((shape, index) => {
-        setTimeout(() => {
-            const shapeElement = document.createElement('div');
-            shapeElement.className = `geometric-shape ${shape.class}`;
-            document.body.appendChild(shapeElement);
-        }, shape.delay);
-    });
-}
-
-// Keyboard shortcuts (қосымша мүмкиншилик)
-document.addEventListener('keydown', function(event) {
-    if (event.ctrlKey || event.metaKey) {
-        switch(event.key) {
-            case '1':
-                event.preventDefault();
-                switchLanguage('qar');
-                break;
-            case '2':
-                event.preventDefault();
-                switchLanguage('rus');
-                break;
-            case '3':
-                event.preventDefault();
-                switchLanguage('eng');
-                break;
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
-    }
-});
 
-// Mobile тил өзгертиў (swipe gesture)
-let touchStartX = 0;
-let touchEndX = 0;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo" data-kk="Қарақалпақ Voice" data-kaa="Qaraqalpaq Voice" data-en="Karakalpak Voice">Қарақалпақ Voice</div>
+                <div class="language-switcher">
+                    <button class="lang-btn active" onclick="changeLanguage('kk')" data-lang="kk">🇰🇿 ҚҚ</button>
+                    <button class="lang-btn" onclick="changeLanguage('kaa')" data-lang="kaa">🏴 РУ</button>
+                    <button class="lang-btn" onclick="changeLanguage('en')" data-lang="en">🇺🇸 EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
 
-document.addEventListener('touchstart', function(event) {
-    touchStartX = event.changedTouches[0].screenX;
-});
+    <nav>
+        <div class="container">
+            <div class="nav-menu">
+                <a class="nav-item" onclick="showSection('home')" data-kk="Жаңалықлар" data-kaa="Jaңalıqlar" data-en="News">Жаңалықлар</a>
+                <a class="nav-item" onclick="showSection('about')" data-kk="Біз туралы" data-kaa="Biz haqqında" data-en="About">Біз туралы</a>
+                <a class="nav-item" onclick="showSection('history')" data-kk="Тарих" data-kaa="Tarıx" data-en="History">Тарих</a>
+                <a class="nav-item" onclick="showSection('culture')" data-kk="Мәдениет" data-kaa="Mádenıyet" data-en="Culture">Мәдениет</a>
+                <a class="nav-item" onclick="showSection('media')" data-kk="Медиа" data-kaa="Media" data-en="Media">Медиа</a>
+                <a class="nav-item" onclick="showSection('sovereignty')" data-kk="Суверенитет" data-kaa="Suwerenítet" data-en="Sovereignty">Суверенитет</a>
+            </div>
+        </div>
+    </nav>
 
-document.addEventListener('touchend', function(event) {
-    touchEndX = event.changedTouches[0].screenX;
-    handleSwipe();
-});
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 data-kk="Қарақалпақ дауысы — халық үні!" data-kaa="Qaraqalpaq dawısı — xalıq únі!" data-en="Karakalpak Voice — Voice of the People!">Қарақалпақ дауысы — халық үні!</h1>
+                <p data-kk="Қарақалпақстан халқының дауысын дүньяға жеткерию үшін жаратылған әрезсіз медиа платформасы." data-kaa="Qaraqalpaqstan xalqınıń dawısın dúnyaǵa jetkerıw ushın jaratılǵan árezsiz media platforması." data-en="An independent media platform created to bring the voice of Karakalpakstan people to the world.">Қарақалпақстан халқының дауысын дүньяға жеткерию үшін жаратылған әрезсіз медиа платформасы.</p>
+            </div>
+        </section>
 
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const currentLang = localStorage.getItem('selectedLanguage') || 'qar';
-    
-    if (touchEndX < touchStartX - swipeThreshold) {
-        // Сол жаққа swipe - кейинги тил
-        const langs = ['qar', 'rus', 'eng'];
-        const currentIndex = langs.indexOf(currentLang);
-        const nextIndex = (currentIndex + 1) % langs.length;
-        switchLanguage(langs[nextIndex]);
-    }
-    
-    if (touchEndX > touchStartX + swipeThreshold) {
-        // Оң жаққа swipe - алдыңғы тил
-        const langs = ['qar', 'rus', 'eng'];
-        const currentIndex = langs.indexOf(currentLang);
-        const prevIndex = currentIndex === 0 ? langs.length - 1 : currentIndex - 1;
-        switchLanguage(langs[prevIndex]);
-    }
-}
+        <div class="container">
+            <!-- Home/News Section -->
+            <section class="content-section active" id="home">
+                <h2 data-kk="Соңғы жаңалықлар" data-kaa="Soңǵı jaңalıqlar" data-en="Latest News">Соңғы жаңалықлар</h2>
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 data-kk="Қарақалпақ тілін дамыту жобалары" data-kaa="Qaraqalpaq tіlіn damıtw jobaları" data-en="Karakalpak Language Development Projects">Қарақалпақ тілін дамыту жобалары</h3>
+                        <p data-kk="Халықаралық ұйымдармен бірлесіп жүргізілетін тіл дамыту бағдарламалары туралы ақпарат." data-kaa="Xalıqaralıq uyımdarmен bіrlesіp júrgіzіletіn tіl damıtw baǵdarlamaları twralı aqparat." data-en="Information about language development programs conducted in cooperation with international organizations.">Халықаралық ұйымдармен бірлесіп жүргізілетін тіл дамыту бағдарламалары туралы ақпарат.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 data-kk="Мәдени іс-шаралар" data-kaa="Mádenı іs-sharalar" data-en="Cultural Events">Мәдени іс-шаралар</h3>
+                        <p data-kk="Қарақалпақ мәдениетін насихаттау мақсатында өткізілетін іс-шаралар жөнінде хабарлар." data-kaa="Qaraqalpaq mádenіetіn nasıxattaw maqsatında ótkіzіletіn іs-sharalar jónіnde xabarlar." data-en="News about events held to promote Karakalpak culture.">Қарақалпақ мәдениетін насихаттау мақсатында өткізілетін іс-шаралар жөнінде хабарлар.</p>
+                    </div>
+                </div>
+            </section>
 
-// SEO ушын тил мета теглерин жаңалаў
-function updateLanguageMeta(lang) {
-    let htmlLang, ogLocale;
-    
-    switch(lang) {
-        case 'rus':
-            htmlLang = 'ru';
-            ogLocale = 'ru_RU';
-            break;
-        case 'eng':
-            htmlLang = 'en';
-            ogLocale = 'en_US';
-            break;
-        default:
-            htmlLang = 'kaa';
-            ogLocale = 'kaa_UZ';
-    }
-    
-    document.documentElement.lang = htmlLang;
-    
-    // Open Graph мета теглерин жаңалаў
-    const ogMeta = document.querySelector('meta[property="og:locale"]');
-    if (ogMeta) {
-        ogMeta.content = ogLocale;
-    }
-}
+            <!-- About Section -->
+            <section class="content-section" id="about">
+                <h2 data-kk="Біз туралы" data-kaa="Biz haqqında" data-en="About Us">Біз туралы</h2>
+                <p data-kk="Қарақалпақ Voice - бұл Қарақалпақстан халқының дауысын дүниеге жеткерету үшін құрылған тәуелсіз медиа платформасы. Біздің мақсатымыз - қарақалпақ тілі мен мәдениетін дамыту, сақтау және жас ұрпаққа жеткізу." data-kaa="Qaraqalpaq Voice - bul Qaraqalpaqstan xalqınıń dawısın dúnіege jetkerıw ushın qurılǵan táwelsіz media platforması. Bіzdіń maqsatımız - qaraqalpaq tіlі men mádenіetіn damıtw, saqtaw jáne jas urpaqqa jetkіzіw." data-en="Karakalpak Voice is an independent media platform created to bring the voice of Karakalpakstan people to the world. Our goal is to develop, preserve and pass on the Karakalpak language and culture to the younger generation.">Қарақалпақ Voice - бұл Қарақалпақстан халқының дауысын дүниеге жеткерету үшін құрылған тәуелсіз медиа платформасы. Біздің мақсатымыз - қарақалпақ тілі мен мәдениетін дамыту, сақтау және жас ұрпаққа жеткізу.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 data-kk="Біздің миссия" data-kaa="Bіzdіń mіssіya" data-en="Our Mission">Біздің миссия</h3>
+                        <p data-kk="Қарақалпақ халқының бай мәдени мұрасын сақтау және дамыту." data-kaa="Qaraqalpaq xalqınıń bay mádenı murasın saqtaw jáne damıtw." data-en="Preserving and developing the rich cultural heritage of the Karakalpak people.">Қарақалпақ халқының бай мәдени мұрасын сақтау және дамыту.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 data-kk="Біздің визия" data-kaa="Bіzdіń vіzіya" data-en="Our Vision">Біздің визия</h3>
+                        <p data-kk="Қарақалпақ тілі әлемдік деңгейде танылуы және дамуы." data-kaa="Qaraqalpaq tіlі álemdіk deńgeyde tanılwı jáne damwı." data-en="Recognition and development of the Karakalpak language at the global level.">Қарақалпақ тілі әлемдік деңгейде танылуы және дамуы.</p>
+                    </div>
+                </div>
+            </section>
 
-// Analytics tracking (қосымша)
-function trackLanguageChange(lang) {
-    // Google Analytics event
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'language_change', {
-            'language': lang,
-            'event_category': 'user_interaction'
+            <!-- History Section -->
+            <section class="content-section" id="history">
+                <h2 data-kk="Тарих" data-kaa="Tarıx" data-en="History">Тарих</h2>
+                <p data-kk="Қарақалпақ халқының тарихы мың жылдық дәстүрлерге бай. Арал теңізі жағалауында қалыптасқан бұл халық өзіндік мәдениеті мен тілімен ерекшеленеді." data-kaa="Qaraqalpaq xalqınıń tarıxı mıń jıldıq dástúrlerge bay. Aral teńіzі jaǵalawında qalıptasqan bul xalıq ózіndіk mádenіetі men tіlіmen erekshеlenedі." data-en="The history of the Karakalpak people is rich in millennium-old traditions. This people, formed on the shores of the Aral Sea, is distinguished by its unique culture and language.">Қарақалпақ халқының тарихы мың жылдық дәстүрлерге бай. Арал теңізі жағалауында қалыптасқан бұл халық өзіндік мәдениеті мен тілімен ерекшеленеді.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 data-kk="Көне дәуір" data-kaa="Kóne dáwіr" data-en="Ancient Period">Көне дәуір</h3>
+                        <p data-kk="Қарақалпақтардың көне тарихы Хорезм мен Арал теңізі аймағымен тығыз байланысты." data-kaa="Qaraqalpaqtardıń kóne tarıxı Xorezm men Aral teńіzі aymаǵımen tıǵız baylanıstı." data-en="The ancient history of Karakalpaks is closely connected with Khorezm and the Aral Sea region.">Қарақалпақтардың көне тарихы Хорезм мен Арал теңізі аймағымен тығыз байланысты.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 data-kk="Заманауи кезең" data-kaa="Zamanawı kezеń" data-en="Modern Period">Заманауи кезең</h3>
+                        <p data-kk="XX ғасырда Қарақалпақстан автономиялық республика мәртебесін алды." data-kaa="XX ǵasırda Qaraqalpaqstan avtonomıyalıq respublіka mártebesіn aldı." data-en="In the 20th century, Karakalpakstan gained the status of an autonomous republic.">XX ғасырда Қарақалпақстан автономиялық республика мәртебесін алды.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Culture Section -->
+            <section class="content-section" id="culture">
+                <h2 data-kk="Мәдениет" data-kaa="Mádenıyet" data-en="Culture">Мәдениет</h2>
+                <p data-kk="Қарақалпақ мәдениеті бай дәстүрлер мен өнерге толы. Халық ауызша шығармашылығы, музыкасы және қолөнері ерекше орын алады." data-kaa="Qaraqalpaq mádenіetі bay dástúrler men ónerge tolı. Xalıq awızsha shıǵarmashılıǵı, muzıkası jáne qolónerі erekche ornı aladı." data-en="Karakalpak culture is rich in traditions and art. Folk oral creativity, music and handicrafts occupy a special place.">Қарақалпақ мәдениеті бай дәстүрлер мен өнерге толы. Халық ауызша шығармашылығы, музыкасы және қолөнері ерекше орын алады.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 data-kk="Халық музыкасы" data-kaa="Xalıq muzıkası" data-en="Folk Music">Халық музыкасы</h3>
+                        <p data-kk="Дәстүрлі аспаптар мен халық әндері қарақалпақ мәдениетінің маңызды бөлігі." data-kaa="Dástúrlі aspapar men xalıq ándеrі qaraqalpaq mádenіetіnіń mańızdı bólіgі." data-en="Traditional instruments and folk songs are an important part of Karakalpak culture.">Дәстүрлі аспаптар мен халық әндері қарақалпақ мәдениетінің маңызды бөлігі.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 data-kk="Қолөнер" data-kaa="Qolóner" data-en="Handicrafts">Қолөнер</h3>
+                        <p data-kk="Кілем тоқу, зергерлік және басқа да дәстүрлі өнер түрлері." data-kaa="Kіlem toqw, zergerlіk jáne basqa da dástúrlі óner túrlerі." data-en="Carpet weaving, jewelry making and other traditional art forms.">Кілем тоқу, зергерлік және басқа да дәстүрлі өнер түрлері.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Media Section -->
+            <section class="content-section" id="media">
+                <h2 data-kk="Медиа" data-kaa="Media" data-en="Media">Медиа</h2>
+                <p data-kk="Қарақалпақ тілінде дайындалған медиа материалдары: видео, аудио жазбалар, подкастар және онлайн мазмұн." data-kaa="Qaraqalpaq tіlіnde dayındalǵan media materіalları: vіdeo, audіo jazbar, podкastlar jáne onlayn mazmun." data-en="Media materials prepared in Karakalpak language: videos, audio recordings, podcasts and online content.">Қарақалпақ тілінде дайындалған медиа материалдары: видео, аудио жазбалар, подкастар және онлайн мазмұн.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 data-kk="Видео материалдар" data-kaa="Vіdeo materіaldar" data-en="Video Materials">Видео материалдар</h3>
+                        <p data-kk="Қарақалпақ мәдениеті мен тарихына арналған деректі фильмдер мен бағдарламалар." data-kaa="Qaraqalpaq mádenіetі men tarıxına arnalǵan derekті fіlmder men baǵdarlamalar." data-en="Documentaries and programs about Karakalpak culture and history.">Қарақалпақ мәдениеті мен тарихына арналған деректі фильмдер мен бағдарламалар.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 data-kk="Подкастар" data-kaa="Podкastlar" data-en="Podcasts">Подкастар</h3>
+                        <p data-kk="Қарақалпақ тілінде дайындалған аудио мазмұн және сұхбаттар." data-kaa="Qaraqalpaq tіlіnde dayındalǵan audіo mazmun jáne suxbattar." data-en="Audio content and interviews prepared in Karakalpak language.">Қарақалпақ тілінде дайындалған аудио мазмұн және сұхбаттар.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sovereignty Section -->
+            <section class="content-section" id="sovereignty">
+                <h2 data-kk="Суверенитет" data-kaa="Suwerenítet" data-en="Sovereignty">Суверенитет</h2>
+                <p data-kk="Қарақалпақстан Республикасының суверенитеті мен өзін-өзі басқару құқықтары туралы ақпарат." data-kaa="Qaraqalpaqstan Respublіkasınıń suwerenítetі men ózіn-ózі basqarw quqıqtarı twralı aqparat." data-en="Information about the sovereignty and self-governance rights of the Republic of Karakalpakstan.">Қарақалпақстан Республикасының суверенитеті мен өзін-өзі басқару құқықтары туралы ақпарат.</p>
+                
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3 data-kk="Конституциялық құқықтар" data-kaa="Кonstitutsіyalıq quqıqtar" data-en="Constitutional Rights">Конституциялық құқықтар</h3>
+                        <p data-kk="Қарақалпақстан халқының конституциялық құқықтары мен бостандықтары." data-kaa="Qaraqalpaqstan xalqınıń konstitutsіyalıq quqıqtarı men bostandıqtarı." data-en="Constitutional rights and freedoms of the people of Karakalpakstan.">Қарақалпақстан халқының конституциялық құқықтары мен бостандықтары.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 data-kk="Өзін-өзі басқару" data-kaa="Ózіn-ózі basqarw" data-en="Self-Governance">Өзін-өзі басқару</h3>
+                        <p data-kk="Жергілікті өзін-өзі басқару органдары мен олардың құзыреттері." data-kaa="Jergіlіktі ózіn-ózі basqarw organdarı men olardıń quzırettеrі." data-en="Local self-government bodies and their competencies.">Жергілікті өзін-өзі басқару органдары мен олардың құзыреттері.</p>
+                    </div>
+                    <div class="content-card">
+                        <h3 data-kk="Халықаралық мойындау" data-kaa="Xalıqaralıq moyındaw" data-en="International Recognition">Халықаралық мойындау</h3>
+                        <p data-kk="Қарақалпақстанның халықаралық арендада орны мен дипломатиялық қатынастары." data-kaa="Qaraqalpaqstannıń xalıqaralıq arenada ornı men dіplomatіyalıq qatınastарі." data-en="Karakalpakstan's place in the international arena and diplomatic relations.">Қарақалпақстанның халықаралық арендада орны мен дипломатиялық қатынастары.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Payment Section -->
+            <section class="payment-section">
+                <div class="container">
+                    <h2 data-kk="💰 Жойбарды қоллап-қуватлау" data-kaa="💰 Joybardı qollap-quwatlаw" data-en="💰 Support the Project">💰 Жойбарды қоллап-қуватлау</h2>
+                    <p data-kk="Сизиң жәрдемиңиз арқалы Қарақалпақстан халқының дауысын дүньяға жеткиземиз!" data-kaa="Sіzіń járdemіńіz arqalı Qaraqalpaqstan xalqınıń dawısın dúnyaǵa jetkіzemіz!" data-en="With your help, we will bring the voice of Karakalpakstan people to the world!">Сизиң жәрдемиңиз арқалы Қарақалпақстан халқының дауысын дүньяға жеткиземиз!</p>
+                    
+                    <div class="payment-grid">
+                        <div class="payment-card">
+                            <div class="payment-icon">🏦</div>
+                            <h3 data-kk="Paysend арқалы" data-kaa="Paysend arqalı" data-en="Via Paysend">Paysend арқалы</h3>
+                            <p data-kk="Орта Азия халықтары үшін" data-kaa="Orta Azіya xalıqtarı ushın" data-en="For Central Asian peoples">Орта Азия халықтары үшін</p>
+                        </div>
+                        
+                        <div class="payment-card">
+                            <div class="payment-icon">🏢</div>
+                            <h3 data-kk="Kaspi.kz" data-kaa="Kaspi.kz" data-en="Kaspi.kz">Kaspi.kz</h3>
+                            <p data-kk="Қазақстан үшін" data-kaa="Qazaqstan ushın" data-en="For Kazakhstan">Қазақстан үшін</p>
+                        </div>
+                        
+                        <div class="payment-card">
+                            <div class="payment-icon">🥇</div>
+                            <h3 data-kk="Kaspi Gold" data-kaa="Kaspi Gold" data-en="Kaspi Gold">Kaspi Gold</h3>
+                            <p data-kk="Премиум карта" data-kaa="Premіum karta" data-en="Premium card">Премиум карта</p>
+                        </div>
+                        
+                        <div class="payment-card">
+                            <div class="payment-icon">🌐</div>
+                            <h3 data-kk="PayPal" data-kaa="PayPal" data-en="PayPal">PayPal</h3>
+                            <p data-kk="Халықаралық" data-kaa="Xalıqaralıq" data-en="International">Халықаралық</p>
+                        </div>
+                        
+                        <div class="payment-card">
+                            <div class="payment-icon">₿</div>
+                            <h3 data-kk="Криптовалюта" data-kaa="Кrіptovalyuta" data-en="Cryptocurrency">Криптовалюта</h3>
+                            <p data-kk="Bitcoin/USDT" data-kaa="Bitcoin/USDT" data-en="Bitcoin/USDT">Bitcoin/USDT</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-kk="© 2025 Қарақалпақ Voice. Барлық құқықтар қорғалған." data-kaa="© 2025 Qaraqalpaq Voice. Barlıq quqıqtar qorǵalǵan." data-en="© 2025 Karakalpak Voice. All rights reserved.">© 2025 Қарақалпақ Voice. Барлық құқықтар қорғалған.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentLanguage = 'kk';
+
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update active language button
+            const langButtons = document.querySelectorAll('.lang-btn');
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Update all translatable elements
+            const elements = document.querySelectorAll('[data-' + lang + ']');
+            elements.forEach(element => {
+                const translation = element.getAttribute('data-' + lang);
+                if (translation) {
+                    element.textContent = translation;
+                }
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default language
+            changeLanguage('kk');
+            
+            // Show home section by default
+            showSection('home');
         });
-    }
-    
-    // Custom analytics
-    console.log(`Language changed to: ${lang} at ${new Date().toISOString()}`);
-}
 
-// Экспорт функциялары (кеңейтиў ушын)
-window.KarakalpakVoice = {
-    switchLanguage: switchLanguage,
-    getCurrentLanguage: () => localStorage.getItem('selectedLanguage') || 'qar',
-    getSupportedLanguages: () => ['qar', 'rus', 'eng']
-};
+        // Prevent accidental language switching on touch devices
+        let touchStartX = 0;
+        let touchStartY = 0;
 
-// Payment функциялары
-function openPayment(method) {
-    const modal = document.getElementById('paymentModal');
-    const modalBody = document.getElementById('modalBody');
-    
-    // Ҳәзирги тилди алыў
-    const currentLang = localStorage.getItem('selectedLanguage') || 'qar';
-    
-    let content = '';
-    
-    switch(method) {
-        case 'peysend':
-            content = generatePeysendContent(currentLang);
-            break;
-        case 'kaspi':
-            content = generateKaspiContent(currentLang);
-            break;
-        case 'kaspi-gold':
-            content = generateKaspiGoldContent(currentLang);
-            break;
-        case 'paypal':
-            content = generatePayPalContent(currentLang);
-            break;
-        case 'crypto':
-            content = generateCryptoContent(currentLang);
-            break;
-    }
-    
-    modalBody.innerHTML = content;
-    modal.style.display = 'block';
-    
-    // Analytics tracking
-    trackPaymentMethod(method);
-}
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, {passive: true});
 
-function closePayment() {
-    document.getElementById('paymentModal').style.display = 'none';
-}
-
-// Peysend payment content
-function generatePeysendContent(lang) {
-    const texts = {
-        qar: {
-            title: '💳 Peysend арқалы қоллау',
-            desc: 'Peysend картасына ақша аўдарыңыз:',
-            cardNumber: 'Карта нөмери:',
-            cardHolder: 'Карта ийеси:',
-            amount: 'Сомма:',
-            currency: 'Валюта: USD/EUR/KZT/UZS',
-            instruction: 'Peysend приложениесин ашып, жоғарыдағы мағлыўматларды киргизиң'
-        },
-        rus: {
-            title: '💳 Поддержка через Peysend',
-            desc: 'Переведите деньги на карту Peysend:',
-            cardNumber: 'Номер карты:',
-            cardHolder: 'Владелец карты:',
-            amount: 'Сумма:',
-            currency: 'Валюта: USD/EUR/KZT/UZS',
-            instruction: 'Откройте приложение Peysend и введите данные выше'
-        },
-        eng: {
-            title: '💳 Support via Peysend',
-            desc: 'Transfer money to Peysend card:',
-            cardNumber: 'Card Number:',
-            cardHolder: 'Card Holder:',
-            amount: 'Amount:',
-            currency: 'Currency: USD/EUR/KZT/UZS',
-            instruction: 'Open Peysend app and enter the details above'
-        }
-    };
-    
-    const text = texts[lang];
-    
-    return `
-        <div class="payment-details">
-            <h3>${text.title}</h3>
-            <p>${text.desc}</p>
-            
-            <div class="payment-info-card">
-                <div class="qr-code">
-                    <span>Peysend QR</span>
-                </div>
-                
-                <div class="payment-address">
-                    <strong>${text.cardNumber}</strong><br>
-                    4123 4567 8901 2345
-                    <button class="copy-btn" onclick="copyToClipboard('4123456789012345')">📋 Copy</button>
-                </div>
-                
-                <div class="payment-address">
-                    <strong>${text.cardHolder}</strong><br>
-                    [СИЗИҢ АТЫҢЫЗ]
-                </div>
-                
-                <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
-                    ${text.instruction}
-                </p>
-                
-                <p style="margin-top: 15px; font-size: 12px; opacity: 0.7;">
-                    ${text.currency}
-                </p>
-            </div>
-        </div>
-    `;
-}
-
-// Kaspi.kz payment content
-function generateKaspiContent(lang) {
-    const texts = {
-        qar: {
-            title: '🏦 Kaspi.kz арқалы қоллау',
-            desc: 'Kaspi картасына ақша аўдарыңыз:',
-            phone: 'Телефон:',
-            instruction: 'Kaspi.kz приложениесинде "Аўдарыў" бөлимин ашыңыз'
-        },
-        rus: {
-            title: '🏦 Поддержка через Kaspi.kz',
-            desc: 'Переведите деньги на карту Kaspi:',
-            phone: 'Телефон:',
-            instruction: 'Откройте раздел "Переводы" в приложении Kaspi.kz'
-        },
-        eng: {
-            title: '🏦 Support via Kaspi.kz',
-            desc: 'Transfer money to Kaspi card:',
-            phone: 'Phone:',
-            instruction: 'Open "Transfers" section in Kaspi.kz app'
-        }
-    };
-    
-    const text = texts[lang];
-    
-    return `
-        <div class="payment-details">
-            <h3>${text.title}</h3>
-            <p>${text.desc}</p>
-            
-            <div class="payment-address">
-                <strong>${text.phone}</strong><br>
-                +7 (705) 123 45 67
-                <button class="copy-btn" onclick="copyToClipboard('+77051234567')">📋 Copy</button>
-            </div>
-            
-            <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
-                ${text.instruction}
-            </p>
-        </div>
-    `;
-}
-
-// Kaspi Gold payment content
-function generateKaspiGoldContent(lang) {
-    const texts = {
-        qar: {
-            title: '🥇 Kaspi Gold арқалы қоллау',
-            desc: 'Kaspi Gold картасына ақша аўдарыңыз:',
-            phone: 'Телефон:',
-            cardNumber: 'Карта нөмери:',
-            goldBenefits: 'Kaspi Gold артықшылықлары: тез аўдарыў, кэшбек, VIP хызмет',
-            instruction: 'Kaspi.kz приложениесинде "Аўдарыў" → "Карта бойынша" таңлаңыз'
-        },
-        rus: {
-            title: '🥇 Поддержка через Kaspi Gold',
-            desc: 'Переведите деньги на карту Kaspi Gold:',
-            phone: 'Телефон:',
-            cardNumber: 'Номер карты:',
-            goldBenefits: 'Преимущества Kaspi Gold: быстрые переводы, кэшбек, VIP-сервис',
-            instruction: 'В приложении Kaspi.kz выберите "Переводы" → "По номеру карты"'
-        },
-        eng: {
-            title: '🥇 Support via Kaspi Gold',
-            desc: 'Transfer money to Kaspi Gold card:',
-            phone: 'Phone:',
-            cardNumber: 'Card Number:',
-            goldBenefits: 'Kaspi Gold benefits: fast transfers, cashback, VIP service',
-            instruction: 'In Kaspi.kz app select "Transfers" → "By card number"'
-        }
-    };
-    
-    const text = texts[lang];
-    
-    return `
-        <div class="payment-details">
-            <h3>${text.title}</h3>
-            <p>${text.desc}</p>
-            
-            <div class="payment-address" style="border: 2px solid #FFD700;">
-                <strong>${text.phone}</strong><br>
-                +7 (705) 123 45 67
-                <button class="copy-btn" onclick="copyToClipboard('+77051234567')" 
-                        style="background: linear-gradient(135deg, #FFD700, #FFA500);">📋 Copy</button>
-            </div>
-            
-            <div class="payment-address" style="background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.1));">
-                <strong>${text.cardNumber}</strong><br>
-                5169 4957 1234 5678
-                <button class="copy-btn" onclick="copyToClipboard('5169495712345678')" 
-                        style="background: linear-gradient(135deg, #FFD700, #FFA500);">📋 Copy</button>
-            </div>
-            
-            <div style="background: rgba(255,215,0,0.1); padding: 15px; border-radius: 10px; margin: 20px 0;">
-                <p style="margin: 0; font-size: 12px; opacity: 0.9;">
-                    ✨ ${text.goldBenefits}
-                </p>
-            </div>
-            
-            <p style="margin-top: 20px; font-size: 14px; opacity: 0.9;">
-                ${text.instruction}
-            </p>
-            
-            <button class="copy-btn" onclick="window.open('https://kaspi.kz/pay', '_blank')" 
-                    style="background: linear-gradient(135deg, #FFD700, #FFA500); margin-top: 15px; padding: 15px 30px;">
-                🔗 Kaspi.kz ашыў
-            </button>
-        </div>
-    `;
-}
-
-// PayPal payment content  
-function generatePayPalContent(lang) {
-    const texts = {
-        qar: {
-            title: '🌍 PayPal арқалы қоллаў',
-            desc: 'PayPal арқалы халықаралық аўдарыў:',
-            email: 'PayPal Email:'
-        },
-        rus: {
-            title: '🌍 Поддержка через PayPal',
-            desc: 'Международный перевод через PayPal:',
-            email: 'PayPal Email:'
-        },
-        eng: {
-            title: '🌍 Support via PayPal',
-            desc: 'International transfer via PayPal:',
-            email: 'PayPal Email:'
-        }
-    };
-    
-    const text = texts[lang];
-    
-    return `
-        <div class="payment-details">
-            <h3>${text.title}</h3>
-            <p>${text.desc}</p>
-            
-            <div class="payment-address">
-                <strong>${text.email}</strong><br>
-                donate@karakalpakvoice.org
-                <button class="copy-btn" onclick="copyToClipboard('donate@karakalpakvoice.org')">📋 Copy</button>
-            </div>
-            
-            <button class="copy-btn" onclick="window.open('https://paypal.me/karakalpakvoice', '_blank')" 
-                    style="background: #0070BA; margin-top: 20px; padding: 15px 30px;">
-                🔗 Open PayPal
-            </button>
-        </div>
-    `;
-}
-
-// Crypto payment content
-function generateCryptoContent(lang) {
-    const texts = {
-        qar: {
-            title: '₿ Криптовалюта арқалы қоллаў',
-            desc: 'Bitcoin немесе USDT аударыңыз:',
-            btcAddress: 'Bitcoin адреси:',
-            usdtAddress: 'USDT адреси (TRC20):'
-        },
-        rus: {
-            title: '₿ Поддержка криптовалютой',
-            desc: 'Переведите Bitcoin или USDT:',
-            btcAddress: 'Bitcoin адрес:',
-            usdtAddress: 'USDT адрес (TRC20):'
-        },
-        eng: {
-            title: '₿ Cryptocurrency Support',
-            desc: 'Transfer Bitcoin or USDT:',
-            btcAddress: 'Bitcoin Address:',
-            usdtAddress: 'USDT Address (TRC20):'
-        }
-    };
-    
-    const text = texts[lang];
-    
-    return `
-        <div class="payment-details">
-            <h3>${text.title}</h3>
-            <p>${text.desc}</p>
-            
-            <div class="payment-address">
-                <strong>${text.btcAddress}</strong><br>
-                bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
-                <button class="copy-btn" onclick="copyToClipboard('bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh')">📋 Copy</button>
-            </div>
-            
-            <div class="payment-address">
-                <strong>${text.usdtAddress}</strong><br>
-                TQn9Y2khEsLMG73w2EihTMeUiMer1728Em
-                <button class="copy-btn" onclick="copyToClipboard('TQn9Y2khEsLMG73w2EihTMeUiMer1728Em')">📋 Copy</button>
-            </div>
-        </div>
-    `;
-}
-
-// Copy to clipboard функциясы
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        // Успех хабарламасы
-        showNotification('📋 Көширилди! / Скопировано! / Copied!');
-    }).catch(() => {
-        // Fallback
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        showNotification('📋 Көширилди! / Скопировано! / Copied!');
-    });
-}
-
-// Notification көрсетиў
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.textContent = message;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #28a745;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 10px;
-        z-index: 10000;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-// Payment method tracking
-function trackPaymentMethod(method) {
-    console.log(`Payment method selected: ${method}`);
-    
-    // Google Analytics event
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'payment_method_click', {
-            'method': method,
-            'event_category': 'monetization'
-        });
-    }
-}
-
-// Modal жабыў (ESC кнопкасы арқалы)
-document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-        closePayment();
-    }
-});
-
-// Modal сыртын басқанда жабыў 
-document.getElementById('paymentModal')?.addEventListener('click', function(event) {
-    if (event.target === this) {
-        closePayment();
-    }
-});
-
-console.log('✅ KarakalpakVoice.org - Тил системасы жүкленди!');
-console.log('🎯 Қолланыў: switchLanguage("rus") ямаса Ctrl+1/2/3');
-console.log('📱 Mobile: экранды swipe етиңиз');
-console.log('💰 Peysend, Kaspi.kz, Kaspi Gold, PayPal, Crypto қоллаў қосылды!');
-</script>
+        document.addEventListener('touchmove', function(e) {
+            // Prevent default behavior only for language switcher area
+            const langSwitcher = document.querySelector('.language-switcher');
+            if (langSwitcher && langSwitcher.contains(e.target)) {
+                e.preventDefault();
+            }
+        }, {passive: false});
+    </script>
+</body>
+</html>
