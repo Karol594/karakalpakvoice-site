@@ -279,6 +279,61 @@
             box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
         }
         
+        /* Жоғары көтеру түймесі */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        .scroll-top-btn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-top-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Социалды желілер түймелері */
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background: var(--primary);
+            color: white;
+        }
+        
         /* Подвал */
         footer {
             background: rgba(20, 20, 30, 0.9);
@@ -364,6 +419,10 @@
             
             .hero-subtitle {
                 font-size: 1.2rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -460,7 +519,7 @@
         </div>
     </section>
 
-    <!-- Басқа бөлімдер -->
+    <!-- Жаңалықтар бөлімі -->
     <section class="section" id="news">
         <div class="container">
             <h2 class="section-title" data-kk="Жаңалықтар" data-ru="Новости" data-en="News">Жаңалықтар</h2>
@@ -474,8 +533,29 @@
                     <p data-kk="Мәдениет пен өнер саласындағы жаңалықтар" data-ru="Новости в сфере культуры и искусства" data-en="News in culture and arts">Мәдениет пен өнер саласындағы жаңалықтар</p>
                 </div>
                 <div class="card animated">
-                    <h3 data-kk="Спорт жаңалықтары" data-ru="Спортивные новости" data-en="Sports News">Спорт жаңалықтары</h3>
-                    <p data-kk="Спортшылардың жетістіктері" data-ru="Достижения спортсменов" data-en="Athletes achievements">Спортшылардың жетістіктері</p>
+                    <h3 data-kk="Халықаралық жаңалықтар" data-ru="Международные новости" data-en="International News">Халықаралық жаңалықтар</h3>
+                    <p data-kk="Әлемдегі маңызды оқиғалар" data-ru="Важные мировые события" data-en="Important world events">Әлемдегі маңызды оқиғалар</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сиясат бөлімі -->
+    <section class="section" id="politics">
+        <div class="container">
+            <h2 class="section-title" data-kk="Сиясат" data-ru="Политика" data-en="Politics">Сиясат</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-kk="Ішкі саясат" data-ru="Внутренняя политика" data-en="Domestic Policy">Ішкі саясат</h3>
+                    <p data-kk="Қарақалпақстандағы саяси процестер" data-ru="Политические процессы в Каракалпакстане" data-en="Political processes in Karakalpakstan">Қарақалпақстандағы саяси процестер</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-kk="Сыртқы саясат" data-ru="Внешняя политика" data-en="Foreign Policy">Сыртқы саясат</h3>
+                    <p data-kk="Халықаралық қатынастар" data-ru="Международные отношения" data-en="International relations">Халықаралық қатынастар</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-kk="Заңнама" data-ru="Законодательство" data-en="Legislation">Заңнама</h3>
+                    <p data-kk="Заңдар мен нормативтік құжаттар" data-ru="Законы и нормативные документы" data-en="Laws and regulations">Заңдар мен нормативтік құжаттар</p>
                 </div>
             </div>
         </div>
@@ -497,6 +577,48 @@
                 <div class="card animated">
                     <h3 data-kk="Қазіргі заман" data-ru="Современность" data-en="Modern Era">Қазіргі заман</h3>
                     <p data-kk="Қарақалпақстанның қазіргі тарихы" data-ru="Современная история Каракалпакстана" data-en="Modern history of Karakalpakstan">Қарақалпақстанның қазіргі тарихы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Спорт бөлімі -->
+    <section class="section" id="sport">
+        <div class="container">
+            <h2 class="section-title" data-kk="Спорт" data-ru="Спорт" data-en="Sports">Спорт</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-kk="Футбол" data-ru="Футбол" data-en="Football">Футбол</h3>
+                    <p data-kk="Қарақалпақстан футболы" data-ru="Футбол в Каракалпакстане" data-en="Football in Karakalpakstan">Қарақалпақстан футболы</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-kk="Күрес" data-ru="Борьба" data-en="Wrestling">Күрес</h3>
+                    <p data-kk="Дәстүрлі күрес түрлері" data-ru="Традиционные виды борьбы" data-en="Traditional wrestling types">Дәстүрлі күрес түрлері</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-kk="Жеңіл атлетика" data-ru="Легкая атлетика" data-en="Athletics">Жеңіл атлетика</h3>
+                    <p data-kk="Спортшылардың жетістіктері" data-ru="Достижения спортсменов" data-en="Athletes achievements">Спортшылардың жетістіктері</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- География бөлімі -->
+    <section class="section" id="geography">
+        <div class="container">
+            <h2 class="section-title" data-kk="География" data-ru="География" data-en="Geography">География</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-kk="Физикалық география" data-ru="Физическая география" data-en="Physical Geography">Физикалық география</h3>
+                    <p data-kk="Жер бедері, климаты, өсімдіктер мен жануарлар дүниесі" data-ru="Рельеф, климат, флора и фауна" data-en="Relief, climate, flora and fauna">Жер бедері, климаты, өсімдіктер мен жануарлар дүниесі</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-kk="Экономикалық география" data-ru="Экономическая география" data-en="Economic Geography">Экономикалық география</h3>
+                    <p data-kk="Табиғи ресурстар, экономикалық кешендер" data-ru="Природные ресурсы, экономические комплексы" data-en="Natural resources, economic complexes">Табиғи ресурстар, экономикалық кешендер</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-kk="Халық географиясы" data-ru="География населения" data-en="Population Geography">Халық географиясы</h3>
+                    <p data-kk="Халықтың таралуы, тығыздығы, құрамы" data-ru="Распределение населения, плотность, состав" data-en="Population distribution, density, composition">Халықтың таралуы, тығыздығы, құрамы</p>
                 </div>
             </div>
         </div>
@@ -546,6 +668,18 @@
                 <h4 data-kk="Байланыс:" data-ru="Контакты:" data-en="Contact:">Байланыс:</h4>
                 <p data-kk="📧 Бас редактор: admin@karakalpakvoice.org" data-ru="📧 Главный редактор: admin@karakalpakvoice.org" data-en="📧 Editor-in-chief: admin@karakalpakvoice.org">📧 Бас редактор: admin@karakalpakvoice.org</p>
                 <p data-kk="📍 Мекен-жай: Нөкис қаласы, Қарақалпақстан" data-ru="📍 Адрес: г. Нукус, Каракалпакстан" data-en="📍 Address: Nukus city, Karakalpakstan">📍 Мекен-жай: Нөкис қаласы, Қарақалпақстан</p>
+                
+                <div style="margin-top: 2rem;">
+                    <h4 data-kk="Социалды желілерде біз:" data-ru="Мы в социальных сетях:" data-en="Follow us on social media:">Социалды желілерде біз:</h4>
+                    <div style="display: flex; gap: 15px; margin-top: 1rem; flex-wrap: wrap;">
+                        <a href="https://t.me/kkvoice_org" class="social-icon" target="_blank" title="Telegram">📱</a>
+                        <a href="https://www.facebook.com/share/1FifdzG23b/" class="social-icon" target="_blank" title="Facebook">f</a>
+                        <a href="https://www.instagram.com/karakalpakvoice_org/profilecard/?igsh=MTV6eWhmdDZqYnltaQ==" class="social-icon" target="_blank" title="Instagram">📸</a>
+                        <a href="https://www.tiktok.com/@karakalpakvoice?_t=ZN-8xpLcNapoAQ&_r=1" class="social-icon" target="_blank" title="TikTok">🎵</a>
+                        <a href="https://youtube.com/@karakalpakvoice_org?si=gjtxaO9MdDLITb1W" class="social-icon" target="_blank" title="YouTube">▶️</a>
+                        <a href="https://x.com/Karakalpak45997?t=Ms3EuR6t43lYOfZmU5w5MQ&s=09" class="social-icon" target="_blank" title="Twitter/X">𝕏</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -565,7 +699,12 @@
                         <li><a href="#" data-kk="Бас бет" data-ru="Главная" data-en="Home">Бас бет</a></li>
                         <li><a href="#sovereignty" data-kk="Суверенитет" data-ru="Суверенитет" data-en="Sovereignty">Суверенитет</a></li>
                         <li><a href="#news" data-kk="Жаңалықтар" data-ru="Новости" data-en="News">Жаңалықтар</a></li>
+                        <li><a href="#politics" data-kk="Сиясат" data-ru="Политика" data-en="Politics">Сиясат</a></li>
                         <li><a href="#history" data-kk="Тарих" data-ru="История" data-en="History">Тарих</a></li>
+                        <li><a href="#sport" data-kk="Спорт" data-ru="Спорт" data-en="Sports">Спорт</a></li>
+                        <li><a href="#geography" data-kk="География" data-ru="География" data-en="Geography">География</a></li>
+                        <li><a href="#traditions" data-kk="Дәстүр" data-ru="Традиции" data-en="Traditions">Дәстүр</a></li>
+                        <li><a href="#about" data-kk="Биз туралы" data-ru="О нас" data-en="About">Биз туралы</a></li>
                     </ul>
                 </div>
                 
@@ -581,9 +720,9 @@
                 <div class="footer-column">
                     <h3 data-kk="Қолдау" data-ru="Поддержка" data-en="Support">Қолдау</h3>
                     <ul>
-                        <li><a href="#" data-kk="Жобаны қолдау" data-ru="Поддержать проект" data-en="Support project">Жобаны қолдау</a></li>
-                        <li><a href="#" data-kk="Волонтер болу" data-ru="Стать волонтером" data-en="Become volunteer">Волонтер болу</a></li>
-                        <li><a href="#" data-kk="Жарнамалау" data-ru="Реклама" data-en="Advertising">Жарнамалау</a></li>
+                        <li><a href="#sovereignty" data-kk="Жобаны қолдау" data-ru="Поддержать проект" data-en="Support project">Жобаны қолдау</a></li>
+                        <li><a href="mailto:volunteer@karakalpakvoice.org" data-kk="Волонтер болу" data-ru="Стать волонтером" data-en="Become volunteer">Волонтер болу</a></li>
+                        <li><a href="mailto:ads@karakalpakvoice.org" data-kk="Жарнамалау" data-ru="Реклама" data-en="Advertising">Жарнамалау</a></li>
                     </ul>
                 </div>
             </div>
@@ -598,6 +737,9 @@
 
     <!-- Қайырымдылық түймесі -->
     <button class="donate-btn pulse" onclick="showDonateSection()" data-kk="Қолдау" data-ru="Поддержать" data-en="Donate">Қолдау</button>
+    
+    <!-- Жоғары көтеру түймесі -->
+    <button class="scroll-top-btn" onclick="scrollToTop()" title="Жоғары көтеру">↑</button>
 
     <script>
         // Тілді баптау
@@ -657,18 +799,26 @@
             });
         });
         
-        // Құрылымды баптау
-        document.addEventListener('DOMContentLoaded', () => {
-            // Тілді қолдану
-            changeLanguage(currentLanguage);
-            
-            // Анимацияны бастау
-            const animatedElements = document.querySelectorAll('.animated');
-            animatedElements.forEach((el, index) => {
-                el.style.animationDelay = `${index * 0.1}s`;
+        // Жоғары көтеру түймесін басқару
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
             });
-            
-            // Навигация байланыстарын баптау
+        }
+        
+        // Прокрутканы бақылау және жоғары көтеру түймесін көрсету
+        function handleScroll() {
+            const scrollBtn = document.querySelector('.scroll-top-btn');
+            if (window.scrollY > 500) {
+                scrollBtn.classList.add('show');
+            } else {
+                scrollBtn.classList.remove('show');
+            }
+        }
+        
+        // Навигация сілтемелерін баптау
+        function setupNavigation() {
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -688,9 +838,30 @@
                         if (targetSection) {
                             targetSection.scrollIntoView({ behavior: 'smooth' });
                         }
+                    } else {
+                        window.location.href = targetId;
                     }
                 });
             });
+        }
+        
+        // Құрылымды баптау
+        document.addEventListener('DOMContentLoaded', () => {
+            // Тілді қолдану
+            changeLanguage(currentLanguage);
+            
+            // Анимацияны бастау
+            const animatedElements = document.querySelectorAll('.animated');
+            animatedElements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            // Навигацияны баптау
+            setupNavigation();
+            
+            // Прокрутканы бақылау
+            window.addEventListener('scroll', handleScroll);
+            handleScroll();
         });
     </script>
 </body>
