@@ -1,0 +1,1329 @@
+"ltr" class="dark-theme">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Қарақалпақстандың №1 тәуелсіз ақпарат платформасы">
+    
+    <!-- FontAwesome иконкалары -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- reCAPTCHA интеграциясы -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
+    <title>Қарақалпақ Voice | №1 Ақпарат порталы</title>
+    
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --primary-dark: #5649C0;
+            --text: #F5F6FA;
+            --bg: #1E1E2E;
+            --card-bg: #2D2D3D;
+            --accent: #00CEC9;
+            --danger: #E74C3C;
+            --success: #2ECC71;
+            --warning: #F39C12;
+            --light-bg: #f8f9fa;
+            --light-text: #212529;
+            --light-card: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            transition: all 0.5s ease;
+            overflow-x: hidden;
+        }
+        
+        body.light-theme {
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка стильдері */
+        header {
+            background: rgba(30, 30, 46, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+        
+        .light-theme header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--accent), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+        }
+        
+        .logo:hover {
+            opacity: 0.9;
+        }
+        
+        /* Навигация мәзірі */
+        nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+        
+        .light-theme .nav-link {
+            color: var(--light-text);
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            background: rgba(108, 92, 231, 0.2);
+            color: var(--accent);
+        }
+        
+        .light-theme .nav-link:hover, .light-theme .nav-link.active {
+            background: rgba(108, 92, 231, 0.1);
+        }
+        
+        /* Суверенитет бөліміне арналған стильдер */
+        .sovereignty-hero {
+            background: linear-gradient(135deg, #1E1E2E 0%, #6C5CE7 100%);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        
+        .light-theme .sovereignty-hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #d0ebff 100%);
+        }
+        
+        .sovereignty-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #FFD700, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .light-theme .sovereignty-title {
+            background: linear-gradient(90deg, #d35400, #c0392b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .light-theme .hero-subtitle {
+            color: #333;
+        }
+        
+        .declaration-card {
+            background: rgba(108, 92, 231, 0.2);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            margin: 3rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+        
+        .light-theme .declaration-card {
+            background: rgba(108, 92, 231, 0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .declaration-card h3 {
+            color: var(--accent);
+            margin-top: 0;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .light-theme .declaration-card h3 {
+            color: var(--primary);
+        }
+        
+        .declaration-card p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .light-theme .declaration-card p {
+            color: #333;
+        }
+        
+        .sovereignty-map {
+            width: 100%;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 3rem 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 2px solid var(--accent);
+            background: #2d2d3d;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .light-theme .sovereignty-map {
+            background: #f1f3f5;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Төлем карточкалары */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .payment-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+        
+        .light-theme .payment-card {
+            background: var(--light-card);
+            border: 1px solid rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+        
+        .light-theme .payment-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+        
+        .payment-card.active {
+            background: rgba(108, 92, 231, 0.3);
+            border-color: var(--primary);
+        }
+        
+        .light-theme .payment-card.active {
+            background: rgba(108, 92, 231, 0.1);
+        }
+        
+        .payment-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .payment-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .light-theme .payment-card h3 {
+            color: #333;
+        }
+        
+        .light-theme .payment-card p {
+            color: #555;
+        }
+        
+        /* Басқа бөлімдер */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .light-theme .section {
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            text-align: center;
+        }
+        
+        .light-theme .section-title {
+            color: var(--primary);
+        }
+        
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .light-theme .card {
+            background: var(--light-card);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .light-theme .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .light-theme .card h3 {
+            color: var(--primary);
+        }
+        
+        .light-theme .card p {
+            color: #555;
+        }
+        
+        /* reCAPTCHA жасыру */
+        .captcha-container {
+            margin: 2rem 0;
+            display: none;
+            justify-content: center;
+        }
+        
+        .captcha-container.show {
+            display: flex;
+        }
+        
+        /* Тіл таңдау түймесі */
+        .language-switcher {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .lang-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text);
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .light-theme .lang-btn {
+            background: rgba(0,0,0,0.05);
+            color: var(--light-text);
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Теманы ауыстыру түймесі */
+        .theme-toggle {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin-left: 10px;
+            color: var(--text);
+        }
+        
+        .light-theme .theme-toggle {
+            background: rgba(0,0,0,0.05);
+            color: var(--light-text);
+        }
+        
+        /* Қайырымдылық түймесі */
+        .donate-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        .donate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+        }
+        
+        /* Жоғары көтеру түймесі */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 99;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        .scroll-top-btn.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .scroll-top-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Социалды желілер түймелері */
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .light-theme .social-icon {
+            background: var(--light-card);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            color: #333;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Подвал */
+        footer {
+            background: rgba(20, 20, 30, 0.9);
+            padding: 3rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .light-theme footer {
+            background: rgba(245, 245, 245, 0.95);
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .light-theme .footer-column h3 {
+            color: var(--primary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .light-theme .footer-column a {
+            color: #444;
+        }
+        
+        .footer-column a:hover {
+            opacity: 1;
+            color: var(--accent);
+        }
+        
+        .light-theme .footer-column a:hover {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+        }
+        
+        .light-theme .copyright {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            color: #666;
+        }
+        
+        /* Анимациялар */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .animated {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Мобильдік стильдер */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .sovereignty-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+                padding: 0 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-toggle {
+                margin: 10px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Қарақалпақ Voice</a>
+                
+                <nav>
+                    <a href="#" class="nav-link active" data-lang-key="nav-home">Бас бет</a>
+                    <a href="#sovereignty" class="nav-link" data-lang-key="nav-sovereignty">Суверенитет</a>
+                    <a href="#news" class="nav-link" data-lang-key="nav-news">Жаңалықтар</a>
+                    <a href="#politics" class="nav-link" data-lang-key="nav-politics">Сиясат</a>
+                    <a href="#history" class="nav-link" data-lang-key="nav-history">Тарих</a>
+                    <a href="#sport" class="nav-link" data-lang-key="nav-sport">Спорт</a>
+                    <a href="#geography" class="nav-link" data-lang-key="nav-geography">География</a>
+                    <a href="#traditions" class="nav-link" data-lang-key="nav-traditions">Дәстүр</a>
+                    <a href="#about" class="nav-link" data-lang-key="nav-about">Біз туралы</a>
+                </nav>
+                
+                <div style="display: flex; align-items: center;">
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="kk">ҚҚ</button>
+                        <button class="lang-btn" data-lang="ru">РУ</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
+                    
+                    <button class="theme-toggle" id="themeToggle" title="Теманы ауыстыру">
+                        🌙
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Суверенитет бөлімі -->
+    <section class="sovereignty-hero" id="sovereignty">
+        <div class="container">
+            <h1 class="sovereignty-title animated" data-lang-key="sovereignty-title">Қарақалпақстан Республикасы</h1>
+            <p class="hero-subtitle animated" data-lang-key="sovereignty-subtitle">Өз Конституциясы, Өз Парламенты, Өз Үкіметі</p>
+        </div>
+    </section>
+    
+    <section class="container">
+        <div class="declaration-card animated">
+            <h3 data-lang-key="declaration-date">1990 жылғы 14 желтоқсан</h3>
+            <p data-lang-key="declaration-text">
+                Қарақалпақстан Республикасы өзінің Суверенитеті жөніндегі Декларациясын қабылдады және осы күннен бастап Қарақалпақстан барлық басқа елдермен тең құқықты!
+            </p>
+        </div>
+        
+        <!-- Қарақалпақстан картасы -->
+        <div class="sovereignty-map animated">
+            ҚАРАҚАЛПАҚСТАН РЕСПУБЛИКАСЫ
+        </div>
+        
+        <!-- reCAPTCHA - жасырын -->
+        <div class="captcha-container" id="captchaContainer">
+            <div class="g-recaptcha" data-sitekey="6LeDEnsrAAAAAK4-pCHD6_lr1tfTJ6wgjSmQmk3h"></div>
+        </div>
+        
+        <!-- Қолдау бөлімі -->
+        <h2 class="section-title animated" data-lang-key="support-title">Жобаны қолдау</h2>
+        <p class="animated" style="text-align: center; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;" data-lang-key="support-text">
+            Сіздің қолдауыңыз бізге Қарақалпақстан дауысын дүниежүзіне жеткізуге көмектеседі!
+        </p>
+        
+        <div class="payment-grid">
+            <div class="payment-card animated" onclick="selectPaymentMethod('paysend')">
+                <div class="payment-icon">🏦</div>
+                <h3>Paysend</h3>
+                <p data-lang-key="paysend-desc">Орта Азия үшін</p>
+            </div>
+            
+            <div class="payment-card animated" onclick="selectPaymentMethod('kaspi')">
+                <div class="payment-icon">🏢</div>
+                <h3>Kaspi.kz</h3>
+                <p data-lang-key="kaspi-desc">Қазақстан үшін</p>
+            </div>
+            
+            <div class="payment-card animated" onclick="selectPaymentMethod('kaspi_gold')">
+                <div class="payment-icon">🥇</div>
+                <h3>Kaspi Gold</h3>
+                <p data-lang-key="kaspi-gold-desc">Премиум карта</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Жаңалықтар бөлімі -->
+    <section class="section" id="news">
+        <div class="container">
+            <h2 class="section-title" data-lang-key="news-title">Жаңалықтар</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-lang-key="news-latest">Соңғы жаңалықтар</h3>
+                    <p data-lang-key="news-latest-desc">Қарақалпақстандағы ең соңғы оқиғалар</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="news-economy">Экономика</h3>
+                    <p data-lang-key="news-economy-desc">Экономикалық жаңалықтар мен сараптамалар</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="news-society">Қоғам</h3>
+                    <p data-lang-key="news-society-desc">Қоғамдық өмір және мәдениет</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Сиясат бөлімі -->
+    <section class="section" id="politics">
+        <div class="container">
+            <h2 class="section-title" data-lang-key="politics-title">Сиясат</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-lang-key="politics-government">Үкімет</h3>
+                    <p data-lang-key="politics-government-desc">Үкіметтің қызметі мен шешімдері</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="politics-parliament">Парламент</h3>
+                    <p data-lang-key="politics-parliament-desc">Заң шығару процесі мен дебаттар</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="politics-democracy">Демократия</h3>
+                    <p data-lang-key="politics-democracy-desc">Халықтың құқықтары мен бостандықтары</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Тарих бөлімі -->
+    <section class="section" id="history">
+        <div class="container">
+            <h2 class="section-title" data-lang-key="history-title">Тарих</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-lang-key="history-ancient">Ежелгі тарих</h3>
+                    <p data-lang-key="history-ancient-desc">Қарақалпақ халқының пайда болуы</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="history-medieval">Орта ғасырлар</h3>
+                    <p data-lang-key="history-medieval-desc">Хорезм мемлекеті кезеңі</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="history-modern">Қазіргі заман</h3>
+                    <p data-lang-key="history-modern-desc">Қарақалпақстанның қазіргі тарихы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Спорт бөлімі -->
+    <section class="section" id="sport">
+        <div class="container">
+            <h2 class="section-title" data-lang-key="sport-title">Спорт</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-lang-key="sport-football">Футбол</h3>
+                    <p data-lang-key="sport-football-desc">Қарақалпақстан футболы</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="sport-wrestling">Күрес</h3>
+                    <p data-lang-key="sport-wrestling-desc">Дәстүрлі күрес түрлері</p>
+                </div>
+                <div class="card animated">
+                    <h3 data-lang-key="sport-athletics">Жеңіл атлетика</h3>
+                    <p data-lang-key="sport-athletics-desc">Спортшылардың жетістіктері</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- География бөлімі -->
+    <section class="section" id="geography">
+        <div class="container">
+            <h2 class="section-title" data-lang-key="geography-title">География</h2>
+            <div class="section-grid">
+                <div class="card animated">
+                    <h3 data-lang-key="geography-physical">Физикалық география</h3>
+                    <p data-lang-key="geography-physical-desc">Жер бедері, климаты, өсімдіктер мен жануарлар дүниесі
+                      <!-- Дәстүр бөлімі -->
+<section class="section" id="traditions">
+    <div class="container">
+        <h2 class="section-title" data-lang-key="traditions-title">Дәстүр</h2>
+        <div class="section-grid">
+            <div class="card animated">
+                <h3 data-lang-key="traditions-holidays">Мейрамдар</h3>
+                <p data-lang-key="traditions-holidays-desc">Ұлттық мейрамдар мен салт-дәстүрлер</p>
+            </div>
+            <div class="card animated">
+                <h3 data-lang-key="traditions-clothing">Киім үлгілері</h3>
+                <p data-lang-key="traditions-clothing-desc">Ұлттық киімдер мен зергерлік бұйымдар</p>
+            </div>
+            <div class="card animated">
+                <h3 data-lang-key="traditions-cuisine">Ас-су ісі</h3>
+                <p data-lang-key="traditions-cuisine-desc">Дәстүрлі тағамдар мен дайындау әдістері</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Біз туралы бөлімі -->
+<section class="section" id="about">
+    <div class="container">
+        <h2 class="section-title" data-lang-key="about-title">Біз туралы</h2>
+        <div class="declaration-card">
+            <h3 data-lang-key="about-voice">Қарақалпақ Дауысы</h3>
+            <p data-lang-key="about-description">
+                Бұл Қарақалпақстан халқының еркін ақпарат алу және өз пікірлерін білдіру мүмкіндігі беретін платформа.
+            </p>
+            
+            <h4 data-lang-key="about-mission">Біздің миссиямыз:</h4>
+            <ul style="margin: 1rem 0 1rem 2rem;">
+                <li data-lang-key="about-mission-1">Қарақалпақ халқының дауысын әлемге жеткізу</li>
+                <li data-lang-key="about-mission-2">Цензурасыз және объективті ақпарат беру</li>
+                <li data-lang-key="about-mission-3">Мәдени мұраны және тілді сақтау</li>
+                <li data-lang-key="about-mission-4">Халықтың құқықтарын қорғау</li>
+            </ul>
+            
+            <h4 data-lang-key="about-contact">Байланыс:</h4>
+            <p>📧 <span data-lang-key="about-editor">Бас редактор:</span> admin@karakalpakvoice.org</p>
+            <p>📍 <span data-lang-key="about-address">Мекен-жай:</span> <span data-lang-key="about-location">Нөкис қаласы, Қарақалпақстан</span></p>
+            
+            <div style="margin-top: 2rem;">
+                <h4 data-lang-key="about-social">Социалды желілерде біз:</h4>
+                <div style="display: flex; gap: 15px; margin-top: 1rem; flex-wrap: wrap;">
+                    <a href="https://t.me/kkvoice_org" class="social-icon" target="_blank" title="Telegram">
+                        <i class="fab fa-telegram-plane"></i>
+                    </a>
+                    <a href="https://www.facebook.com/share/1FifdzG23b/" class="social-icon" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/karakalpakvoice_org/profilecard/?igsh=MTV6eWhmdDZqYnltaQ==" class="social-icon" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@karakalpakvoice?_t=ZN-8xpLcNapoAQ&_r=1" class="social-icon" target="_blank" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://youtube.com/@karakalpakvoice_org?si=gjtxaO9MdDLITb1W" class="social-icon" target="_blank" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://x.com/Karakalpak45997?t=Ms3EuR6t43lYOfZmU5w5MQ&s=09" class="social-icon" target="_blank" title="Twitter/X">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Подвал -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Қарақалпақ Voice</h3>
+                <p data-lang-key="footer-description">Қарақалпақстан халқының дауысы</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3 data-lang-key="footer-sections">Бөлімдер</h3>
+                <ul>
+                    <li><a href="#" data-lang-key="nav-home">Бас бет</a></li>
+                    <li><a href="#sovereignty" data-lang-key="nav-sovereignty">Суверенитет</a></li>
+                    <li><a href="#news" data-lang-key="nav-news">Жаңалықтар</a></li>
+                    <li><a href="#politics" data-lang-key="nav-politics">Сиясат</a></li>
+                    <li><a href="#history" data-lang-key="nav-history">Тарих</a></li>
+                    <li><a href="#sport" data-lang-key="nav-sport">Спорт</a></li>
+                    <li><a href="#geography" data-lang-key="nav-geography">География</a></li>
+                    <li><a href="#traditions" data-lang-key="nav-traditions">Дәстүр</a></li>
+                    <li><a href="#about" data-lang-key="nav-about">Біз туралы</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 data-lang-key="footer-contact">Байланыс</h3>
+                <ul>
+                    <li><a href="mailto:admin@karakalpakvoice.org">admin@karakalpakvoice.org</a></li>
+                    <li><a href="mailto:news@karakalpakvoice.org">news@karakalpakvoice.org</a></li>
+                    <li><a href="mailto:ads@karakalpakvoice.org">ads@karakalpakvoice.org</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3 data-lang-key="footer-support">Қолдау</h3>
+                <ul>
+                    <li><a href="#sovereignty" data-lang-key="footer-support-project">Жобаны қолдау</a></li>
+                    <li><a href="mailto:volunteer@karakalpakvoice.org" data-lang-key="footer-volunteer">Волонтер болу</a></li>
+                    <li><a href="mailto:ads@karakalpakvoice.org" data-lang-key="footer-advertising">Жарнамалау</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p data-lang-key="footer-copyright">
+                © 2025 Қарақалпақ Voice. Барлық құқықтар сақталған.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- Қайырымдылық түймесі -->
+<button class="donate-btn pulse" onclick="showDonateSection()" data-lang-key="donate-btn">Қолдау</button>
+
+<!-- Жоғары көтеру түймесі -->
+<button class="scroll-top-btn" onclick="scrollToTop()" title="Жоғары көтеру">↑</button>
+
+<script>
+    // Тіл аударма объектісі
+    const translations = {
+        kk: {
+            'nav-home': 'Бас бет',
+            'nav-sovereignty': 'Суверенитет',
+            'nav-news': 'Жаңалықтар',
+            'nav-politics': 'Сиясат',
+            'nav-history': 'Тарих',
+            'nav-sport': 'Спорт',
+            'nav-geography': 'География',
+            'nav-traditions': 'Дәстүр',
+            'nav-about': 'Біз туралы',
+            'sovereignty-title': 'Қарақалпақстан Республикасы',
+            'sovereignty-subtitle': 'Өз Конституциясы, Өз Парламенты, Өз Үкіметі',
+            'declaration-date': '1990 жылғы 14 желтоқсан',
+            'declaration-text': 'Қарақалпақстан Республикасы өзінің Суверенитеті жөніндегі Декларациясын қабылдады және осы күннен бастап Қарақалпақстан барлық басқа елдермен тең құқықты!',
+            'support-title': 'Жобаны қолдау',
+            'support-text': 'Сіздің қолдауыңыз бізге Қарақалпақстан дауысын дүниежүзіне жеткізуге көмектеседі!',
+            'paysend-desc': 'Орта Азия үшін',
+            'kaspi-desc': 'Қазақстан үшін',
+            'kaspi-gold-desc': 'Премиум карта',
+            'news-title': 'Жаңалықтар',
+            'news-latest': 'Соңғы жаңалықтар',
+            'news-latest-desc': 'Қарақалпақстандағы ең соңғы оқиғалар',
+            'news-economy': 'Экономика',
+            'news-economy-desc': 'Экономикалық жаңалықтар мен сараптамалар',
+            'news-society': 'Қоғам',
+            'news-society-desc': 'Қоғамдық өмір және мәдениет',
+            'politics-title': 'Сиясат',
+            'politics-government': 'Үкімет',
+            'politics-government-desc': 'Үкіметтің қызметі мен шешімдері',
+            'politics-parliament': 'Парламент',
+            'politics-parliament-desc': 'Заң шығару процесі мен дебаттар',
+            'politics-democracy': 'Демократия',
+            'politics-democracy-desc': 'Халықтың құқықтары мен бостандықтары',
+            'history-title': 'Тарих',
+            'history-ancient': 'Ежелгі тарих',
+            'history-ancient-desc': 'Қарақалпақ халқының пайда болуы',
+            'history-medieval': 'Орта ғасырлар',
+            'history-medieval-desc': 'Хорезм мемлекеті кезеңі',
+            'history-modern': 'Қазіргі заман',
+            'history-modern-desc': 'Қарақалпақстанның қазіргі тарихы',
+            'sport-title': 'Спорт',
+            'sport-football': 'Футбол',
+            'sport-football-desc': 'Қарақалпақстан футболы',
+            'sport-wrestling': 'Күрес',
+            'sport-wrestling-desc': 'Дәстүрлі күрес түрлері',
+            'sport-athletics': 'Жеңіл атлетика',
+            'sport-athletics-desc': 'Спортшылардың жетістіктері',
+            'geography-title': 'География',
+            'geography-physical': 'Физикалық география',
+            'geography-physical-desc': 'Жер бедері, климаты, өсімдіктер мен жануарлар дүниесі',
+            'geography-economic': 'Экономикалық география',
+            'geography-economic-desc': 'Табиғи ресурстар, экономикалық кешендер',
+            'geography-population': 'Халық географиясы',
+            'geography-population-desc': 'Халықтың таралуы, тығыздығы, құрамы',
+            'traditions-title': 'Дәстүр',
+            'traditions-holidays': 'Мейрамдар',
+            'traditions-holidays-desc': 'Ұлттық мейрамдар мен салт-дәстүрлер',
+            'traditions-clothing': 'Киім үлгілері',
+            'traditions-clothing-desc': 'Ұлттық киімдер мен зергерлік бұйымдар',
+            'traditions-cuisine': 'Ас-су ісі',
+            'traditions-cuisine-desc': 'Дәстүрлі тағамдар мен дайындау әдістері',
+            'about-title': 'Біз туралы',
+            'about-voice': 'Қарақалпақ Дауысы',
+            'about-description': 'Бұл Қарақалпақстан халқының еркін ақпарат алу және өз пікірлерін білдіру мүмкіндігі беретін платформа.',
+            'about-mission': 'Біздің миссиямыз:',
+            'about-mission-1': 'Қарақалпақ халқының дауысын әлемге жеткізу',
+            'about-mission-2': 'Цензурасыз және объективті ақпарат беру',
+            'about-mission-3': 'Мәдени мұраны және тілді сақтау',
+            'about-mission-4': 'Халықтың құқықтарын қорғау',
+            'about-contact': 'Байланыс:',
+            'about-editor': 'Бас редактор:',
+            'about-address': 'Мекен-жай:',
+            'about-location': 'Нөкис қаласы, Қарақалпақстан',
+            'about-social': 'Социалды желілерде біз:',
+            'footer-description': 'Қарақалпақстан халқының дауысы',
+            'footer-sections': 'Бөлімдер',
+            'footer-contact': 'Байланыс',
+            'footer-support': 'Қолдау',
+            'footer-support-project': 'Жобаны қолдау',
+            'footer-volunteer': 'Волонтер болу',
+            'footer-advertising': 'Жарнамалау',
+            'footer-copyright': '© 2025 Қарақалпақ Voice. Барлық құқықтар сақталған.',
+            'donate-btn': 'Қолдау'
+        },
+        ru: {
+            'nav-home': 'Главная',
+            'nav-sovereignty': 'Суверенитет',
+            'nav-news': 'Новости',
+            'nav-politics': 'Политика',
+            'nav-history': 'История',
+            'nav-sport': 'Спорт',
+            'nav-geography': 'География',
+            'nav-traditions': 'Традиции',
+            'nav-about': 'О нас',
+            'sovereignty-title': 'Республика Каракалпакстан',
+            'sovereignty-subtitle': 'Своя Конституция, Свой Парламент, Свое Правительство',
+            'declaration-date': '14 декабря 1990 года',
+            'declaration-text': 'Республика Каракалпакстан приняла Декларацию о своем Суверенитете и с этого дня Каракалпакстан равноправен со всеми другими странами!',
+            'support-title': 'Поддержать проект',
+            'support-text': 'Ваша поддержка поможет нам донести голос Каракалпакстана до всего мира!',
+            'paysend-desc': 'Для Центральной Азии',
+            'kaspi-desc': 'Для Казахстана',
+            'kaspi-gold-desc': 'Премиум карта',
+            'news-title': 'Новости',
+            'news-latest': 'Последние новости',
+            'news-latest-desc': 'Самые свежие события в Каракалпакстане',
+            'news-economy': 'Экономика',
+            'news-economy-desc': 'Экономические новости и аналитика',
+            'news-society': 'Общество',
+            'news-society-desc': 'Общественная жизнь и культура',
+            'politics-title': 'Политика',
+            'politics-government': 'Правительство',
+            'politics-government-desc': 'Деятельность и решения правительства',
+            'politics-parliament': 'Парламент',
+            'politics-parliament-desc': 'Законотворческий процесс и дебаты',
+            'politics-democracy': 'Демократия',
+            'politics-democracy-desc': 'Права и свободы народа',
+            'history-title': 'История',
+            'history-ancient': 'Древняя история',
+            'history-ancient-desc': 'Происхождение каракалпакского народа',
+            'history-medieval': 'Средние века',
+            'history-medieval-desc': 'Период Хорезмского государства',
+            'history-modern': 'Современность',
+            'history-modern-desc': 'Современная история Каракалпакстана',
+            'sport-title': 'Спорт',
+            'sport-football': 'Футбол',
+            'sport-football-desc': 'Футбол Каракалпакстана',
+            'sport-wrestling': 'Борьба',
+            'sport-wrestling-desc': 'Традиционные виды борьбы',
+            'sport-athletics': 'Легкая атлетика',
+            'sport-athletics-desc': 'Достижения спортсменов',
+            'geography-title': 'География',
+            'geography-physical': 'Физическая география',
+            'geography-physical-desc': 'Рельеф, климат, растительный и животный мир',
+            'geography-economic': 'Экономическая география',
+            'geography-economic-desc': 'Природные ресурсы, экономические комплексы',
+            'geography-population': 'География населения',
+            'geography-population-desc': 'Распределение, плотность, состав населения',
+            'traditions-title': 'Традиции',
+            'traditions-holidays': 'Праздники',
+            'traditions-holidays-desc': 'Национальные праздники и обычаи',
+            'traditions-clothing': 'Одежда',
+            'traditions-clothing-desc': 'Национальная одежда и ювелирные изделия',
+            'traditions-cuisine': 'Кулинария',
+            'traditions-cuisine-desc': 'Традиционные блюда и методы приготовления',
+            'about-title': 'О нас',
+            'about-voice': 'Каракалпакский Голос',
+            'about-description': 'Это платформа, дающая народу Каракалпакстана возможность свободно получать информацию и выражать свои мнения.',
+            'about-mission': 'Наша миссия:',
+            'about-mission-1': 'Донести голос каракалпакского народа до мира',
+            'about-mission-2': 'Предоставлять информацию без цензуры и объективно',
+            'about-mission-3': 'Сохранять культурное наследие и язык',
+            'about-mission-4': 'Защищать права народа',
+            'about-contact': 'Контакты:',
+            'about-editor': 'Главный редактор:',
+            'about-address': 'Адрес:',
+            'about-location': 'г. Нукус, Каракалпакстан',
+            'about-social': 'Мы в социальных сетях:',
+            'footer-description': 'Голос народа Каракалпакстана',
+            'footer-sections': 'Разделы',
+            'footer-contact': 'Контакты',
+            'footer-support': 'Поддержка',
+            'footer-support-project': 'Поддержать проект',
+            'footer-volunteer': 'Стать волонтером',
+            'footer-advertising': 'Реклама',
+            'footer-copyright': '© 2025 Каракалпакский Voice. Все права защищены.',
+            'donate-btn': 'Поддержать'
+        },
+        en: {
+            'nav-home': 'Home',
+            'nav-sovereignty': 'Sovereignty',
+            'nav-news': 'News',
+            'nav-politics': 'Politics',
+            'nav-history': 'History',
+            'nav-sport': 'Sports',
+            'nav-geography': 'Geography',
+            'nav-traditions': 'Traditions',
+            'nav-about': 'About Us',
+            'sovereignty-title': 'Republic of Karakalpakstan',
+            'sovereignty-subtitle': 'Own Constitution, Own Parliament, Own Government',
+            'declaration-date': 'December 14, 1990',
+            'declaration-text': 'The Republic of Karakalpakstan adopted the Declaration on its Sovereignty and from this day Karakalpakstan is equal with all other countries!',
+            'support-title': 'Support the Project',
+            'support-text': 'Your support helps us bring the voice of Karakalpakstan to the world!',
+            'paysend-desc': 'For Central Asia',
+            'kaspi-desc': 'For Kazakhstan',
+            'kaspi-gold-desc': 'Premium card',
+            'news-title': 'News',
+            'news-latest': 'Latest News',
+            'news-latest-desc': 'The latest events in Karakalpakstan',
+            'news-economy': 'Economy',
+            'news-economy-desc': 'Economic news and analysis',
+            'news-society': 'Society',
+            'news-society-desc': 'Social life and culture',
+            'politics-title': 'Politics',
+            'politics-government': 'Government',
+            'politics-government-desc': 'Government activities and decisions',
+            'politics-parliament': 'Parliament',
+            'politics-parliament-desc': 'Legislative process and debates',
+            'politics-democracy': 'Democracy',
+            'politics-democracy-desc': 'Rights and freedoms of the people',
+            'history-title': 'History',
+            'history-ancient': 'Ancient History',
+            'history-ancient-desc': 'Origin of the Karakalpak people',
+            'history-medieval': 'Middle Ages',
+            'history-medieval-desc': 'Period of the Khwarezm state',
+            'history-modern': 'Modern Times',
+            'history-modern-desc': 'Modern history of Karakalpakstan',
+            'sport-title': 'Sports',
+            'sport-football': 'Football',
+            'sport-football-desc': 'Karakalpakstan football',
+            'sport-wrestling': 'Wrestling',
+            'sport-wrestling-desc': 'Traditional wrestling types',
+            'sport-athletics': 'Athletics',
+            'sport-athletics-desc': 'Athletes achievements',
+            'geography-title': 'Geography',
+            'geography-physical': 'Physical Geography',
+            'geography-physical-desc': 'Relief, climate, flora and fauna',
+            'geography-economic': 'Economic Geography',
+            'geography-economic-desc': 'Natural resources, economic complexes',
+            'geography-population': 'Population Geography',
+            'geography-population-desc': 'Distribution, density, composition of population',
+            'traditions-title': 'Traditions',
+            'traditions-holidays': 'Holidays',
+            'traditions-holidays-desc': 'National holidays and customs',
+            'traditions-clothing': 'Clothing',
+            'traditions-clothing-desc': 'National clothing and jewelry',
+            'traditions-cuisine': 'Cuisine',
+            'traditions-cuisine-desc': 'Traditional dishes and cooking methods',
+            'about-title': 'About Us',
+            'about-voice': 'Karakalpak Voice',
+            'about-description': 'This is a platform that gives the people of Karakalpakstan the opportunity to freely receive information and express their opinions.',
+            'about-mission': 'Our mission:',
+            'about-mission-1': 'Bring the voice of the Karakalpak people to the world',
+            'about-mission-2': 'Provide information without censorship and objectively',
+            'about-mission-3': 'Preserve cultural heritage and language',
+            'about-mission-4': 'Protect the rights of the people',
+            'about-contact': 'Contact:',
+            'about-editor': 'Editor-in-Chief:',
+            'about-address': 'Address:',
+            'about-location': 'Nukus city, Karakalpakstan',
+            'about-social': 'We are on social networks:',
+            'footer-description': 'Voice of the people of Karakalpakstan',
+            'footer-sections': 'Sections',
+            'footer-contact': 'Contact',
+            'footer-support': 'Support',
+            'footer-support-project': 'Support the project',
+            'footer-volunteer': 'Become a volunteer',
+            'footer-advertising': 'Advertising',
+            'footer-copyright': '© 2025 Karakalpak Voice. All rights reserved.',
+            'donate-btn': 'Support'
+        }
+    };
+
+    // Ағымдағы тіл
+    let currentLang = 'kk';
+
+    // Тілді ауыстыру функциясы
+    function switchLanguage(lang) {
+        currentLang = lang;
+        
+        // Барлық тіл түймелерінен active класын алып тастау
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Ағымдағы тіл түймесіне active класын қосу
+        document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        
+        // Барлық элементтерді аудару
+        document.querySelectorAll('[data-lang-key]').forEach(element => {
+            const key = element.getAttribute('data-lang-key');
+            if (translations[lang] && translations[lang][key]) {
+                element.textContent = translations[lang][key];
+            }
+        });
+        
+        // Тілді сақтау
+        localStorage.setItem('language', lang);
+    }
+
+    // Теманы ауыстыру
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('light-theme');
+        localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+        themeToggle.innerHTML = document.body.classList.contains('light-theme') ? '🌞' : '🌙';
+    });
+    
+    // Навигацияны баптау
+    function setupNavigation() {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Барлық активті сілтемелерден актив класын алып тастау
+                document.querySelectorAll('.nav-link').forEach(lnk => {
+                    lnk.classList.remove('active');
+                });
+                
+                // Ағымдағы сілтемеге актив класын қосу
+                this.classList.add('active');
+                
+                // Бөлімге өту
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    const targetSection = document.querySelector(targetId);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                } else {
+                    window.location.href = targetId;
+                }
+            });
+        });
+    }
+    
+    // Төлем әдісін таңдау
+    function selectPaymentMethod(method) {
+        document.querySelectorAll('.payment-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        event.currentTarget.classList.add('active');
+        
+        // Төлем мәліметтерін көрсету showPaymentDetails(method); }function showPaymentDetails(method) {
+        // reCAPTCHA көрсету
+        document.getElementById('captchaContainer').classList.add('show');
+        
+        // Төлем мәліметтерін көрсету
+        let paymentInfo = '';
+        switch(method) {
+            case 'paysend':
+                paymentInfo = 'Paysend ID: +998901234567\nКарта: 8600 1234 5678 9012';
+                break;
+            case 'kaspi':
+                paymentInfo = 'Kaspi.kz номері: +77771234567\nКарта: 4400 4301 2345 6789';
+                break;
+            case 'kaspi_gold':
+                paymentInfo = 'Kaspi Gold номері: +77771234567\nКарта: 5169 4901 2345 6789';
+                break;
+        }
+        alert(`${method} төлем әдісі таңдалды!\n\n${paymentInfo}`);
+    }
+    
+    // Қайырымдылық бөлімін көрсету
+    function showDonateSection() {
+        document.getElementById('sovereignty').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Жоғары көтеру түймесін басқару
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Прокрутканы бақылау және жоғары көтеру түймесін көрсету
+    function handleScroll() {
+        const scrollBtn = document.querySelector('.scroll-top-btn');
+        if (window.scrollY > 500) {
+            scrollBtn.classList.add('show');
+        } else {
+            scrollBtn.classList.remove('show');
+        }
+    }
+    
+    // Құрылымды баптау
+    document.addEventListener('DOMContentLoaded', () => {
+        // Теманы жүктеу
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            document.body.classList.add('light-theme');
+            themeToggle.innerHTML = '🌞';
+        } else {
+            themeToggle.innerHTML = '🌙';
+        }
+        
+        // Тілді жүктеу
+        const savedLang = localStorage.getItem('language') || 'kk';
+        if (savedLang !== 'kk') {
+            switchLanguage(savedLang);
+        }
+        
+        // Тіл түймелеріне event listener қосу
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+        
+        // Навигацияны баптау
+        setupNavigation();
+        
+        // Прокрутканы бақылау
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+        
+        // Анимацияны бастау
+        const animatedElements = document.querySelectorAll('.animated');
+        animatedElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+    });
+</script>
