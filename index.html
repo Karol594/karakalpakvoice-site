@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="kk" class="dark-theme">
+<html lang="kk" dir="ltr" class="dark-theme">
 <head>
-    <!-- Бұрынғы meta тегтері -->
-    <title data-kk="Қарақалпақ Voice | Суверенитет" data-ru="Каракалпакский Voice | Суверенитет" data-en="Karakalpak Voice | Sovereignty">Қарақалпақ Voice</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Қарақалпақстандың №1 тәуелсіз ақпарат платформасы">
+    
+    <!-- CSP қауіпсіздік саясаты -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'">
+    
+    <title data-kk="Қарақалпақ Voice | №1 Ақпарат порталы" data-ru="Каракалпакский Voice | №1 Информационный портал" data-en="Karakalpak Voice | №1 Information Portal">Қарақалпақ Voice</title>
     
     <style>
+        :root {
+            --primary: #6C5CE7;
+            --primary-dark: #5649C0;
+            --text: #F5F6FA;
+            --bg: #1E1E2E;
+            --card-bg: #2D2D3D;
+            --accent: #00CEC9;
+            --danger: #E74C3C;
+            --success: #2ECC71;
+        }
+        
+        body {
+            font-family: 'Inter', 'Noto Sans Karakalpak', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+        
         /* Суверенитет бөліміне арналған стильдер */
         .sovereignty-hero {
             background: linear-gradient(135deg, #1E1E2E 0%, #6C5CE7 100%);
@@ -12,22 +39,11 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-        
-        .sovereignty-hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('karakalpak-pattern.png') repeat;
-            opacity: 0.1;
-            pointer-events: none;
+            margin-bottom: 3rem;
         }
         
         .sovereignty-title {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 1rem;
             background: linear-gradient(90deg, #FFD700, #FFFFFF);
@@ -36,108 +52,44 @@
             text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
         
-        .sovereignty-map {
-            width: 100%;
-            height: 500px;
-            background: url('karakalpakstan-map.png') center/cover no-repeat;
-            border-radius: 16px;
-            margin: 3rem 0;
-            position: relative;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            border: 2px solid var(--accent);
-        }
-        
-        .sovereignty-map::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at center, transparent 60%, rgba(0,0,0,0.7));
-            pointer-events: none;
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 4rem auto;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 10px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: 50%;
-        }
-        
-        .timeline-content {
-            padding: 20px;
-            background: var(--card-bg);
-            border-radius: 16px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-            position: relative;
-        }
-        
-        .timeline-content::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--accent);
-            border-radius: 50%;
-            top: 30px;
-            z-index: 1;
-        }
-        
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            right: -10px;
-        }
-        
-        .timeline-item:nth-child(even) .timeline-content::after {
-            left: -10px;
-        }
-        
-        .constitution-highlight {
+        .declaration-card {
             background: rgba(108, 92, 231, 0.2);
-            border-left: 4px solid var(--primary);
-            padding: 1rem;
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
             margin: 2rem 0;
             border-radius: 0 8px 8px 0;
         }
         
-        .sovereignty-badge {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--accent);
-            color: var(--bg);
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            z-index: 100;
-            box-shadow: 0 4px 15px rgba(0, 206, 201, 0.3);
-            animation: pulse 2s infinite;
+        .declaration-card h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+        
+        /* Төлем карточкалары */
+        .payment-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border-color: var(--accent);
+        }
+        
+        .payment-card.active {
+            background: rgba(108, 92, 231, 0.3);
+            border-color: var(--primary);
+        }
+        
+        /* Анимациялар */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         @keyframes pulse {
@@ -145,146 +97,196 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Қолданушыға ыңғайлы интерфейс */
+        .language-selector {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--card-bg);
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+        
+        /* Қайырымдылық түймесі */
+        .donate-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .donate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+        }
     </style>
 </head>
 
 <body>
+    <!-- Тіл таңдау модальды терезесі -->
+    <div id="languageModal" class="modal" style="display: flex;">
+        <div class="modal-content">
+            <h2 data-kk="Тілді таңдаңыз" data-ru="Выберите язык" data-en="Choose language">Тілді таңдаңыз</h2>
+            <div class="language-options">
+                <button onclick="selectLanguage('kk')" class="lang-option">
+                    <span>🏳️ Қарақалпақша</span>
+                </button>
+                <button onclick="selectLanguage('ru')" class="lang-option">
+                    <span>🇷🇺 Русский</span>
+                </button>
+                <button onclick="selectLanguage('en')" class="lang-option">
+                    <span>🇺🇸 English</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Суверенитет бөлімі -->
     <section class="sovereignty-hero" id="sovereignty">
         <div class="container">
-            <div class="sovereignty-badge" data-kk="Суверенитет" data-ru="Суверенитет" data-en="Sovereignty">Суверенитет</div>
-            
             <h1 class="sovereignty-title" data-kk="Қарақалпақстан Республикасы" data-ru="Республика Каракалпакстан" data-en="Republic of Karakalpakstan">Қарақалпақстан Республикасы</h1>
             <p class="hero-subtitle" data-kk="Өз Конституциясы, Өз Парламенты, Өз Үкіметі" data-ru="Своя Конституция, Свой Парламент, Свое Правительство" data-en="Own Constitution, Own Parliament, Own Government">Өз Конституциясы, Өз Парламенты, Өз Үкіметі</p>
         </div>
     </section>
     
-    <!-- Интерактивті карта -->
     <section class="container">
-        <div class="sovereignty-map" id="karakalpakstanMap" aria-label="Қарақалпақстанның географиялық картасы">
-            <!-- Картаға интерактивті элементтер қосылады -->
-        </div>
-        
-        <div class="constitution-highlight">
-            <h3 data-kk="Конституцияның 70-бабы" data-ru="Статья 70 Конституции" data-en="Article 70 of Constitution">Конституцияның 70-бабы</h3>
-            <p data-kk="Қарақалпақстан Республикасы - Өзбекстан Республикасы құрамындағы суверен республика." 
-               data-ru="Республика Каракалпакстан - суверенная республика в составе Республики Узбекистан." 
-               data-en="The Republic of Karakalpakstan is a sovereign republic within the Republic of Uzbekistan.">
-               Қарақалпақстан Республикасы - Өзбекстан Республикасы құрамындағы суверен республика.
+        <div class="declaration-card">
+            <h3 data-kk="1990 жылғы 14 желтоқсан" data-ru="14 декабря 1990 года" data-en="December 14, 1990">1990 жылғы 14 желтоқсан</h3>
+            <p data-kk="Қарақалпақстан Республикасы өзінің Суверенитеті жөніндегі Декларациясын қабылдады және осы күннен бастап Қарақалпақстан барлық басқа елдермен тең құқықты!" 
+               data-ru="Каракалпакстан принял Декларацию о суверенитете и с этого дня Каракалпакстан имеет равные права со всеми другими странами!" 
+               data-en="Karakalpakstan adopted the Declaration of Sovereignty and from this day Karakalpakstan has equal rights with all other countries!">
+               Қарақалпақстан Республикасы өзінің Суверенитеті жөніндегі Декларациясын қабылдады және осы күннен бастап Қарақалпақстан барлық басқа елдермен тең құқықты!
             </p>
         </div>
-    </section>
-    
-    <!-- Тарихи шкала -->
-    <section class="container">
-        <h2 class="section-title" data-kk="Суверенитет жолы" data-ru="Путь к суверенитету" data-en="Path to Sovereignty">Суверенитет жолы</h2>
         
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3 data-kk="1925 жыл" data-ru="1925 год" data-en="1925">1925 жыл</h3>
-                    <p data-kk="Қарақалпақ автономиялы облысы құрылды" 
-                       data-ru="Образована Каракалпакская автономная область" 
-                       data-en="Karakalpak Autonomous Oblast was formed">
-                       Қарақалпақ автономиялы облысы құрылды
-                    </p>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3 data-kk="1932 жыл" data-ru="1932 год" data-en="1932">1932 жыл</h3>
-                    <p data-kk="Қарақалпақ АССР-і құрылды" 
-                       data-ru="Образована Каракалпакская АССР" 
-                       data-en="Karakalpak ASSR was established">
-                       Қарақалпақ АССР-і құрылды
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Көбірек тарихи оқиғалар қосылады -->
+        <!-- Қарақалпақстан картасы -->
+        <div class="sovereignty-map">
+            <img src="karakalpakstan-map.png" alt="Қарақалпақстан картасы" style="width: 100%; border-radius: 12px; border: 2px solid var(--accent);">
         </div>
     </section>
-    
-    <!-- Халықаралық танылым -->
-    <section class="container">
-        <h2 class="section-title" data-kk="Халықаралық танылым" data-ru="Международное признание" data-en="International Recognition">Халықаралық танылым</h2>
+
+    <!-- Қолдау бөлімі -->
+    <section class="container" style="margin-top: 3rem;">
+        <h2 data-kk="Жобаны қолдау" data-ru="Поддержать проект" data-en="Support the project">Жобаны қолдау</h2>
+        <p data-kk="Сіздің қолдауыңыз бізге Қарақалпақстан дауысын дүниежүзіне жеткізуге көмектеседі!" 
+           data-ru="Ваша поддержка поможет нам донести голос Каракалпакстана до всего мира!" 
+           data-en="Your support will help us bring the voice of Karakalpakstan to the world!">
+           Сіздің қолдауыңыз бізге Қарақалпақстан дауысын дүниежүзіне жеткізуге көмектеседі!
+        </p>
         
-        <div class="recognition-grid">
-            <div class="recognition-card">
-                <img src="un-logo.png" alt="БҰҰ" loading="lazy">
-                <p data-kk="БҰҰ мүше-мемлекеттерімен дипломатиялық қатынастар" 
-                   data-ru="Дипломатические отношения с государствами-членами ООН" 
-                   data-en="Diplomatic relations with UN member states">
-                   БҰҰ мүше-мемлекеттерімен дипломатиялық қатынастар
-                </p>
+        <div class="payment-grid" style="margin-top: 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+            <div class="payment-card" onclick="selectPaymentMethod('paysend')">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🏦</div>
+                <h3>Paysend</h3>
+                <p data-kk="Орта Азия үшін" data-ru="Для Центральной Азии" data-en="For Central Asia">Орта Азия үшін</p>
+            </div>
+            
+            <div class="payment-card" onclick="selectPaymentMethod('kaspi')">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🏢</div>
+                <h3>Kaspi.kz</h3>
+                <p data-kk="Қазақстан үшін" data-ru="Для Казахстана" data-en="For Kazakhstan">Қазақстан үшін</p>
+            </div>
+            
+            <div class="payment-card" onclick="selectPaymentMethod('kaspi_gold')">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🥇</div>
+                <h3>Kaspi Gold</h3>
+                <p data-kk="Премиум карта" data-ru="Премиум карта" data-en="Premium card">Премиум карта</p>
+            </div>
+            
+            <div class="payment-card" onclick="selectPaymentMethod('crypto')">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">₿</div>
+                <h3 data-kk="Криптовалюта" data-ru="Криптовалюта" data-en="Cryptocurrency">Криптовалюта</h3>
+                <p>Bitcoin/USDT</p>
             </div>
         </div>
     </section>
 
+    <!-- Тіл таңдау түймесі -->
+    <div class="language-selector">
+        <button onclick="showLanguageModal()" style="background: none; border: none; color: var(--text); cursor: pointer;">
+            <span style="font-size: 1.2rem;">🌐</span>
+        </button>
+    </div>
+    
+    <!-- Қайырымдылық түймесі -->
+    <button class="donate-btn pulse" onclick="showDonateSection()" data-kk="Қолдау" data-ru="Поддержать" data-en="Donate">Қолдау</button>
+
     <script>
-        // Интерактивті картаны инициализациялау
-        function initMap() {
-            const map = document.getElementById('karakalpakstanMap');
-            
-            // Картаға интерактивті аймақтарды қосу
-            map.addEventListener('click', function(e) {
-                const x = e.offsetX / this.offsetWidth;
-                const y = e.offsetY / this.offsetHeight;
-                
-                // Картаның әртүрлі аймақтарына әсер ету
-                if (x > 0.3 && x < 0.7 && y > 0.4 && y < 0.8) {
-                    showModal('Нөкис - Қарақалпақстанның астанасы');
-                }
-            });
-            
-            // Картаға анимация қосу
-            let pulseElements = 0;
-            const pulseInterval = setInterval(() => {
-                const dot = document.createElement('div');
-                dot.className = 'map-pulse';
-                dot.style.left = `${30 + Math.random() * 40}%`;
-                dot.style.top = `${30 + Math.random() * 40}%`;
-                map.appendChild(dot);
-                
-                pulseElements++;
-                if (pulseElements > 5) {
-                    clearInterval(pulseInterval);
-                }
-            }, 1000);
+        // Тілді баптау
+        let currentLanguage = localStorage.getItem('language') || 'kk';
+        
+        function selectLanguage(lang) {
+            currentLanguage = lang;
+            localStorage.setItem('language', lang);
+            document.documentElement.lang = lang;
+            applyLanguage();
+            hideLanguageModal();
         }
         
-        // Тарихи шкаланы басқару
-        function initTimeline() {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            
-            timelineItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = '1';
-                    item.style.transform = 'translateY(0)';
-                }, index * 200);
+        function applyLanguage() {
+            document.querySelectorAll('[data-kk]').forEach(el => {
+                const translation = el.getAttribute(`data-${currentLanguage}`);
+                if (translation) el.textContent = translation;
             });
         }
         
-        // Суверенитет бөлімін көрсету
-        function highlightSovereignty() {
-            const sovereigntySection = document.getElementById('sovereignty');
-            sovereigntySection.scrollIntoView({ behavior: 'smooth' });
-            
-            // Анимацияны бастау
-            const title = sovereigntySection.querySelector('.sovereignty-title');
-            title.style.animation = 'sovereigntyPulse 3s infinite';
+        function showLanguageModal() {
+            document.getElementById('languageModal').style.display = 'flex';
         }
         
-        // Пайдаланушы сайтқа кірген кезде суверенитет бөлімін көрсету
+        function hideLanguageModal() {
+            document.getElementById('languageModal').style.display = 'none';
+        }
+        
+        // Төлем әдісін таңдау
+        function selectPaymentMethod(method) {
+            document.querySelectorAll('.payment-card').forEach(card => {
+                card.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+            
+            // Төлем мәліметтерін көрсету
+            showPaymentDetails(method);
+        }
+        
+        function showPaymentDetails(method) {
+            // Бұл жерде әр төлем әдісіне қатысты мәліметтерді көрсету логикасы
+            alert(`Сіз ${method} төлем әдісін таңдадыңыз. Төлем мәліметтері жіберіледі...`);
+        }
+        
+        // Қайырымдылық бөлімін көрсету
+        function showDonateSection() {
+            document.getElementById('sovereignty').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Құрылымды баптау
         document.addEventListener('DOMContentLoaded', () => {
-            initMap();
-            initTimeline();
+            // Егер тіл таңдалмаған болса, модальды терезені көрсету
+            if (!localStorage.getItem('language')) {
+                showLanguageModal();
+            } else {
+                applyLanguage();
+            }
             
-            // Бірінші рет кіргенде суверенитет бөлімін көрсету
-            if (!sessionStorage.getItem('visited')) {
-                setTimeout(highlightSovereignty, 1000);
-                sessionStorage.setItem('visited', 'true');
+            // Суверенитет бөліміне автоматты скролл
+            if (window.location.hash === '#sovereignty') {
+                document.getElementById('sovereignty').scrollIntoView();
             }
         });
     </script>
