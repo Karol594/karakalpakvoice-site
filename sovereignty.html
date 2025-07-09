@@ -576,11 +576,11 @@ Declaration published in the newspaper "Free Karakalpakstan" on December 20, 199
 <div class="contact-info">
 <div class="contact-item">
 <i class="fas fa-envelope"></i>
-<span>info@karakalpakvoice.org</span>
+<a href="mailto:info@karakalpakvoice.org" style="color: white; text-decoration: none;">info@karakalpakvoice.org</a>
 </div>
 <div class="contact-item">
 <i class="fas fa-globe"></i>
-<span>karakalpakvoice.org</span>
+<a href="https://karakalpakvoice.org" style="color: white; text-decoration: none;" target="_blank">karakalpakvoice.org</a>
 </div>
 </div>
 <div class="slogan">Hear our voice! Truth will prevail!</div>
@@ -591,29 +591,29 @@ Declaration published in the newspaper "Free Karakalpakstan" on December 20, 199
 </section>
     </main>
 <script>
-        // Тіл ауыстыру функциясы
+        // Тил алмастырыў функциясы
         function switchLanguage(lang) {
-            // Барлық тіл мазмұнын жасыру
+            // Барлық тил мазмунын жасырыў
             const contents = document.querySelectorAll('.language-content');
             contents.forEach(content => {
                 content.classList.remove('active');
             });
             
-            // Барлық тіл батырмаларын белсенді емес қылу
+            // Барлық тил түймелерин өшириў
             const buttons = document.querySelectorAll('.lang-btn');
             buttons.forEach(btn => {
                 btn.classList.remove('active');
             });
             
-            // Таңдалған тілді көрсету
+            // Таңланған тилди көрсетиў
             document.getElementById('hero-' + lang).classList.add('active');
             document.getElementById('content-' + lang).classList.add('active');
             
-            // Батырманы белсенді қылу
+            // Түймени жеделлестириў
             event.target.classList.add('active');
         }
         
-        // Бетті жүктегенде қарақалпақ тілін белсенді қылу
+        // Бетти жүклеўде қарақалпақ тилин жеделлестириў
         document.addEventListener('DOMContentLoaded', function() {
             switchLanguage('kaa');
         });
