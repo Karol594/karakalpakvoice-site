@@ -276,7 +276,7 @@
                 <li><a href="sport.html">Спорт</a></li>
             </ul>
             <div class="language-switcher">
-                <a href="#" class="lang-btn active" onclick="switchLanguage('kaa')">🇬🇦 QAR</a>
+                <a href="#" class="lang-btn active" onclick="switchLanguage('kaa')">🏳️ QAR</a>
                 <a href="#" class="lang-btn" onclick="switchLanguage('ru')">🇷🇺 РУС</a>
                 <a href="#" class="lang-btn" onclick="switchLanguage('en')">🇬🇧 ENG</a>
             </div>
@@ -289,7 +289,7 @@
         <section class="hero">
             <div class="container">
                 <div id="hero-kaa" class="language-content active">
-                    <h1 class="fade-in">🇬🇦 ҚАРАҚАЛПАҚСТАННЫҢ СУВЕРЕНИТЕТИ</h1>
+                    <h1 class="fade-in">🏳️ ҚАРАҚАЛПАҚСТАННЫҢ СУВЕРЕНИТЕТИ</h1>
                     <p class="fade-in">Ҳақыйқат тарийх ҳәм нызамшылық дәлиллер</p>
                 </div>
                 <div id="hero-ru" class="language-content">
@@ -590,3 +590,31 @@ Declaration published in the newspaper "Free Karakalpakstan" on December 20, 199
 </div>
 </section>
     </main>
+<script>
+        // Тіл ауыстыру функциясы
+        function switchLanguage(lang) {
+            // Барлық тіл мазмұнын жасыру
+            const contents = document.querySelectorAll('.language-content');
+            contents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Барлық тіл батырмаларын белсенді емес қылу
+            const buttons = document.querySelectorAll('.lang-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Таңдалған тілді көрсету
+            document.getElementById('hero-' + lang).classList.add('active');
+            document.getElementById('content-' + lang).classList.add('active');
+            
+            // Батырманы белсенді қылу
+            event.target.classList.add('active');
+        }
+        
+        // Бетті жүктегенде қарақалпақ тілін белсенді қылу
+        document.addEventListener('DOMContentLoaded', function() {
+            switchLanguage('kaa');
+        });
+</script>
