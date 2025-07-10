@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Karol594/karakalpakvoice-site
   branch: main
 
 media_folder: "static/images"
