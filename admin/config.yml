@@ -2,6 +2,7 @@ backend:
   name: github
   repo: Karol594/karakalpakvoice-site
   branch: main
+  client_id: Iv23lim5hbOZRhC9eL9n
 
 media_folder: "static/images"
 public_folder: "/images"
