@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }}</title>
-    <meta name="description" content="{{ .Description }}">
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.description }}">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -55,7 +55,11 @@
         {{ .Content }}
         
         <div style="margin-top: 40px; text-align: center;">
-            <a href="/admin/" class="admin-link">📝 Admin панельге кіру</a>
+            <a href="/admin/" class="admin-link">📝 Admin панельге кириў</a>
+        </div>
+        
+        <div style="margin-top: 20px; text-align: center; color: #7f8c8d;">
+            <p>Сайт Hugo арқалы жасалған</p>
         </div>
     </div>
 </body>
