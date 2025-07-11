@@ -2,11 +2,8 @@ baseURL: "https://karakalpakvoice.org"
 languageCode: "kaa"
 title: "Karakalpak Voice"
 theme: ""
-
-staticDir: "static"
 publishDir: "public"
 contentDir: "content"
-
 enableRobotsTXT: true
 enableGitInfo: true
 
