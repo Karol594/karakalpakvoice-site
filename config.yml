@@ -1,40 +1,15 @@
-# Hugo сайт конфигурациясы
 baseURL: "https://karakalpakvoice.org"
 languageCode: "kaa"
-title: "Қарақалпақ Voice"
+title: "Karakalpak Voice"
 theme: ""
 
-# Статикалық файлдар
 staticDir: "static"
 publishDir: "public"
-
-# Мазмұн параметрлері
 contentDir: "content"
+
 enableRobotsTXT: true
 enableGitInfo: true
 
-# Мультимедиа
 params:
-  author: "Қарақалпақ Voice"
-  description: "Қарақалпақ тілді жаңалықлар сайты"
-
-# Decap CMS конфигурациясы (ескі)
-backend:
-  name: git-gateway
-  branch: main
-  login: true
-
-media_folder: "static/images"
-public_folder: "/images"
-
-collections:
-  - name: "news"
-    label: "Жаңалықтар"
-    folder: "content/news"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Тақырып", name: "title", widget: "string" }
-      - { label: "Дата", name: "date", widget: "datetime" }
-      - { label: "Сурет", name: "image", widget: "image" }
-      - { label: "Мәтін", name: "body", widget: "markdown" }
+  author: "Karakalpak Voice"
+  description: "Қарақалпақ тилиндеги жаңалықлар сайты"
