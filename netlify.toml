@@ -1,7 +1,16 @@
+[build]
+  command = "hugo --gc --minify"
+  publish = "public"
+
+[context.production.environment]
+  HUGO_VERSION = "0.128.0" # Сіздің Hugo версияңызды көрсетіңіз
+  HUGO_ENV = "production"
+
 [[redirects]]
   from = "/"
   to = "/index.html"
   status = 200
+  force = true # Осы жолды қосыңыз немесе бар екенін растаңыз
 
 [[redirects]]
   from = "/admin/*"
