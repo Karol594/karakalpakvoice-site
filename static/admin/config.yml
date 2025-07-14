@@ -2,7 +2,8 @@ backend:
   name: github
   repo: Karol594/karakalpakvoice-site
   branch: main
-  client_id: Ov23liGYlaNlzZ3niSaH
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
