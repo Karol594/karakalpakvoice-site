@@ -2,15 +2,15 @@ backend:
   name: github
   repo: Karol594/karakalpakvoice-site
   branch: main
+  client_id: Ov23liGYlaNlzZ3niSaH
 
-media_folder: "static/images"           # Физикалық папка
-public_folder: "/images"                 # Сайттағы бар жол
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
 
-# Медиа библиотека (ҳәзиррше стандартты)
-# media_library:
-#   name: uploadcare
-#   config:
-#     publicKey: "YOUR_UPLOADCARE_PUBLIC_KEY"
+media_library:
+  name: uploadcare
+  config:
+    publicKey: "demopublickey"
 
 collections:
   - name: "blog"
@@ -19,46 +19,13 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Тақырыбы", name: "title", widget: "string" }
+      - { label: "Тақырып", name: "title", widget: "string" }
       - { label: "Күни", name: "date", widget: "datetime" }
       - { label: "Автор", name: "author", widget: "string" }
       - { label: "Сыпатлама", name: "description", widget: "text" }
       - { label: "Бас сүўрет", name: "image", widget: "image", required: false }
       - { label: "Санаатлар", name: "categories", widget: "list", default: ["жаңалықлар"] }
       - { label: "Теглер", name: "tags", widget: "list", required: false }
-      - { label: "Мақала мазмуны", name: "body", widget: "markdown" }
+      - { label: "Мазмуны", name: "body", widget: "markdown" }
 
-  - name: "pages"
-    label: "Бетлер"
-    files:
-      - label: "Бас бет"
-        name: "index"
-        file: "content/_index.md"
-        fields:
-          - { label: "Тақырыбы", name: "title", widget: "string" }
-          - { label: "Сыпатлама", name: "description", widget: "text" }
-          - { label: "Мазмуны", name: "body", widget: "markdown" }
-      
-      - label: "Биз туўралы"
-        name: "about"
-        file: "content/about.md"
-        fields:
-          - { label: "Тақырыбы", name: "title", widget: "string" }
-          - { label: "Сыпатлама", name: "description", widget: "text" }
-          - { label: "Мазмуны", name: "body", widget: "markdown" }
-      
-      - label: "Байланыс"
-        name: "contact"
-        file: "content/contact.md"
-        fields:
-          - { label: "Тақырыбы", name: "title", widget: "string" }
-          - { label: "Пошта", name: "email", widget: "string" }
-          - { label: "Телефон", name: "phone", widget: "string", required: false }
-          - { label: "Мәнзил", name: "address", widget: "text", required: false }
-          - { label: "Мазмуны", name: "body", widget: "markdown" }
-
-# Локализация
-locale: 'kk'
-
-# Сырлы режим
 publish_mode: editorial_workflow
