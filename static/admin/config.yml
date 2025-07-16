@@ -8,18 +8,13 @@ backend:
 media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
-media_library: 
-  name: uploadcare
-  config:
-    publicKey: "demopublickey"
-
 collections:
   - name: "posts"
     label: "Post"
-    folder: "content/news"  # Сиздин мақалалар папкаңыз - content/news
+    folder: "content/news"
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Featured Image", name: "image", widget: "image", required: false}
