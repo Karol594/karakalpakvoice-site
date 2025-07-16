@@ -5,22 +5,22 @@ backend:
   base_url: https://api.netlify.com
   auth_endpoint: auth
 
-# МИНДЕТТІ ПАРАМЕТРЛЕРДИ ҚОСЫҢ ↓
+# МИНДЕТТІ ПАРАМЕТРЛЕР
 media_folder: "static/images/uploads" # Фото сақталатын папка
 public_folder: "/images/uploads"      # Фото көрсетилу жолы
 
 media_library: 
   name: uploadcare
   config:
-    publicKey: "demopublickey" # Бул кілтті өзгертпең
+    publicKey: "demopublickey" # Кілтти өзгертпең
 
-collections:
+collections: # БУЛ ЖЕРДЕ "S" ҚОСЫҢ!
   - name: "posts" # Мақалалар ушін
     label: "Post"
     folder: "content/posts" # Мақалалар сақталатын жер
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Date", name: "date", widget: "datetime"}
-      - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Image", name: "image", widget: "image"}
+      - {label: "Date", name: "date", widget: "datetime"} # "dateName" ЕМЕС!
+      - {label: "Body", name: "body", widget: "markdown"} # "Body" ЕМЕС "body"!
+      - {label: "Image", name: "image", widget: "image"} # "Image" ЕМЕС "image"!
