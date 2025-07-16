@@ -2,13 +2,21 @@
 from = "/admin"
 to = "/static/admin/index.html"
 status = 200
+force = true
 
 [[redirects]]
 from = "/admin/"
 to = "/static/admin/index.html"
 status = 200
+force = true
 
 [[redirects]]
 from = "/admin/*"
 to = "/static/admin/index.html"
+status = 200
+force = true
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
 status = 200
