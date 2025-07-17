@@ -1,0 +1,22 @@
+baseURL = "https://karakalpakvoice.org"
+languageCode = "kk-KZ"
+title = "Қарақалпақ Voice"
+
+# Static файлларды мәжбүрий көшириў
+[build]
+  publish = "public"
+
+# Барлық static файлларды көшириў
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+
+# Markup параметрлери
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
