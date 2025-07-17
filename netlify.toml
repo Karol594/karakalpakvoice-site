@@ -1,18 +1,18 @@
 [[redirects]]
 from = "/admin"
-to = "/static/admin/index.html"
+to = "/admin/index.html"
 status = 200
 force = true
 
 [[redirects]]
 from = "/admin/"
-to = "/static/admin/index.html"
+to = "/admin/index.html"
 status = 200
 force = true
 
 [[redirects]]
 from = "/admin/*"
-to = "/static/admin/index.html"
+to = "/admin/index.html"
 status = 200
 force = true
 
